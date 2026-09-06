@@ -90,7 +90,7 @@ str(movies)
 #Nominal: Language 
 #Ordinal: Not present 
 #Interval: Release Date
-#Ration: Run time
+#Ratio: Run time
 
 3.  A movie studio wants to know which types of movies are best at generating profit. The measure they use for this is the profitability ratio, which is defined as $$PR=\frac{Revenue}{Budget}.$$ Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
