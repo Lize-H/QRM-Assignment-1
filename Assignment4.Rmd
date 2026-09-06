@@ -76,20 +76,21 @@ Each week consists of 1, 2, or 3 subquestions. The total amount of points you ca
 movies <- read_tsv("movies4.tsv")
 summary(movies)
 ```
+#Answer to question 1
 
-**Your Answer:**
-
-Write your response here.
+Number_of_observations <- nrow(movies)
+Number_of_variables <- ncol(movies)
+Subjects <-colnames(movies)
 
 2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r}
-#WRITE YOUR CODE HERE
+str(movies)
 ```
-
-**Your Answer:**
-
-rite your response here.
+#Nominal: Language 
+#Ordinal: Not present 
+#Interval: Release Date
+#Ration: Run time
 
 3.  A movie studio wants to know which types of movies are best at generating profit. The measure they use for this is the profitability ratio, which is defined as $$PR=\frac{Revenue}{Budget}.$$ Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -108,36 +109,21 @@ For each step, you should provide first all the code you used to answer the ques
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+movies$PR <- movies$revenue / movies$budget
+mean <- mean(movies$PR,na.rm = TRUE)
+median <- median(movies$PR,na.rm = TRUE)
+max <- max(movies$PR,na.rm = TRUE)
+min <-min(movies$PR,na.rm = TRUE)
 ```
-
-**Your Answer:**
-
-Write your formulated response here.
-
 *Step b*
 
-```{r}
+#Some movies have a budget of 0. When you the revenue which is greater than 0 by the budget of 0 it wil result in Inf. This means that the value is not ending.
 
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
 
 *Step c*
 
-```{r}
+#NA means not available. it indicates that the value of the budget and/or the revenue is missing.
 
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
 
 *Step d*
 
