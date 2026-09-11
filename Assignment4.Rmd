@@ -29,7 +29,7 @@ getwd()
 ```
 ```{r setup, packages}
 #install.packages("tidyverse")
-install.packages("renv")
+#install.packages("renv")
 library(tidyverse)
 library(renv)
 ```
@@ -179,18 +179,24 @@ d.  Using your data, calculate $P(120 \leq R | M')$ \textbf{[2 points]}
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+male_or_not <- ifelse(movies$director_gender == "male", 1, 0)
+male_or_not[is.na(male_or_not)] <- 0
+probability_male <- mean(male_or_not)
+probability_male
+female_or_not <- ifelse(movies$director_gender == "female", 1, 0)
+female_or_not[is.na(female_or_not)] <- 0
+probability_female <- mean(female_or_not)
+probability_female
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The probability that a director is a male P(M)=0.8477723. The probability that a director is not a male (is a female) is P(M')=0.0990099. 
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
+R <- movies$runtime
 
 ```
 
