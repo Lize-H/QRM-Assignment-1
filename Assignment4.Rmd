@@ -167,7 +167,7 @@ Write your formulated response here.
 
 **Your Answer**
 
-Write your formulated response here.
+The dataset is a sample of the population. The dataset includes a limited amount of movies from 1990 until 2016. As it only includes 808 movies, which is a limited amount, as there were a lot more movies that were published in this timespan. The full dataset could be all the movies that have information on the variables included in the dataset (such as, runtime, director, etc.) published from 1990 until 2016.
 
 2 Let M be the event that a movie director is male. Let R be the runtime of the movie.
 
