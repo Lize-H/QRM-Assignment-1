@@ -196,24 +196,24 @@ The probability that a director is a male P(M)=0.8477723. The probability that a
 *step b*
 
 ```{r}
-R <- movies$runtime
-
+pnorm(120, mean= 107, sd = 22) - pnorm(90, mean = 107, sd = 22)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+According to normal distribution, the probability that runtime, denoted by R, is between 90 and 120 minutes is 0.5028674.
 
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+R <- movies$runtime
+conditions_met_r <- R[ R >= 90 & R <= 120]
+length(conditions_met_r) / length(R)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at P(90<=R<=120)=0.6571782.
 
 *step d*
 
