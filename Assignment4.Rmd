@@ -213,18 +213,30 @@ length(conditions_met_r) / length(R)
 
 **Your Answer:**
 
-Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at P(90<=R<=120)=0.6571782.
+Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at P(90<=R<=120)=0.6571782. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
 
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
+#Probability of runtime more or equal to 120 minutes
+meq_120_min <- R[R>=120]
+prob_120_min <- length(meq_120_min)/length(R)
 
+#Probability that a director is female
+probability_female
+
+#Probability of intersection of female director and runtime
+intersect_fem_r <- sum(movies$runtime>=120 & movies$director_gender == "female")
+prob_intersect <- length(intersect_fem_r)/length(movies$runtime)
+
+#Probability of the union of female director and runtime >= 120 min
+prob_union <- prob_120_min + probability_female - prob_intersect
+prob_union
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The probability of the union between a runtime of 120 minutes or more and a female director is 0.297. 
 
 3 For this question, you will again use the profitability ratio PR. Make sure that PR is defined the same way as in question 3d of week 1. For this question, you will assume that your data set is the full population.
 
