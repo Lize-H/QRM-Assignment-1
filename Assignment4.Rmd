@@ -31,8 +31,10 @@ getwd()
 ```{r setup, packages}
 #install.packages("tidyverse")
 #install.packages("renv")
+#install.packages("moments")
 library(tidyverse)
 library(renv)
+library(moments)
 ```
 
 ```{r setup, include=FALSE}
@@ -292,13 +294,19 @@ print(sample_means)
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
+#Create Histogram
+hist(sample_means, main = "Sample Means", xlab = "Mean Values", col = "lightblue", breaks = 16)
 
+#Compute descriptive statistics
+mean(sample_means)
+sd(sample_means)
+kurtosis(sample_means)
+skewness(sample_means)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric. 
 
 *step e*
 
