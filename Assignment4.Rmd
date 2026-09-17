@@ -106,8 +106,10 @@ For each step, you should provide first all the code you used to answer the ques
 *Step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+#Creating the new variable PR
 movies$PR <- movies$revenue / movies$budget
+
+#Computing the summary statistics
 mean <- mean(movies$PR,na.rm = TRUE)
 median <- median(movies$PR,na.rm = TRUE)
 max <- max(movies$PR,na.rm = TRUE)
@@ -129,39 +131,44 @@ NA means not available. It indicates that the value for the PR is missing. In th
 *Step d*
 
 ```{r}
-
-
-#WRITE YOUR CODE HERE
-
+#Turning Inf into NA
+movies$PR[is.infinite(movies$PR)]<- NA
+#Computing the new summary statistics
+new_mean <- mean(movies$PR, na.rm = TRUE)
+new_median <- median(movies$PR, na.rm = TRUE)
+new_max <- max(movies$PR, na.rm = TRUE)
+new_min <- min(movies$PR, na.rm = TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Now that the infinite values have been replaced with NA in the column PR, the mean is approximately 2.8646, the median is approximately 1.5358, the maximum is approximately 73.6715, and the minimum has remained 0. The mean can be interpreted as the fact that on average, a movie earned 2.6846 times the budget in revenue.
 
 *Step e*
 
 ```{r}
-
-#WRITE YOUR CODE HERE
-
+mean(movies$PR>=1 & !is.na(movies$PR))
+mean(movies$PR>=1, na.rm = TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+A movie with a PR of at least one means that the movie is at least break even or has made a profit. A PR of one is the border between a movie that made a loss and a movie that made a profit. The fraction of movies with a PR of at least one is approximately 0.4567 when including the NAs as observations that do not fulfill the condition. When completely excluding the NAs in computing the fraction, the fraction becomes approximately 0.6059
 
 *Step f*
 
 ```{r}
+#Computing the box plot
+boxplot(movies$PR, main = "Boxplot of Profitability ratio", ylab = "Profitability ratio", col = "lightblue", range = 0, na.rm = TRUE)
 
-#WRITE YOUR CODE HERE
-
+#Computing the Quartiles
+quantile(movies$PR, na.rm = TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The boxplot is extremely unfairly distributed. The first 25% of the observations is barely visible and the interquartile range (25-75%) is very small as well. The highest 25% however, is extremely widespread. This illustrates that the profitability ratios are unfairly distributed between movies.
+The first quartile is 0.3667, the second quartile, also known as the median, is 1.5358, the third quartile is 3.4484, and the fourth quartile, also known as the maximum, is 73.6715 (all these values have been rounded down to four decimals). These numbers show that very few make a lot of money in the movie industry, and that most make significantly smaller profits. So, the nature the movie industry is that most barely make a profit or even make a loss, while only a few make huge profits.
 
 # Week 2
 
