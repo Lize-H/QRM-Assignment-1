@@ -75,22 +75,20 @@ Each week consists of 1, 2, or 3 subquestions. The total amount of points you ca
 ```{r}
 movies <- read_tsv("movies4.tsv")
 summary(movies)
+n_distinct(movies$index)
 ```
 #Answer to question 1
 
-Number_of_observations <- nrow(movies)
-Number_of_variables <- ncol(movies)
-Subjects <-colnames(movies)
+The dataset "movies4.tsv", renamed to movies in this project, contains 808 observations of 18 variables (excluding the index). A subject is a single, unique object in a dataset and the measured values associated with it. There are 808 subjects, which is equal to the amount of observations. This is because each observation has a unique index number and a unique title as well. 
 
 2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r}
 str(movies)
 ```
-#Nominal: Language 
-#Ordinal: Not present 
-#Interval: Release Date
-#Ratio: Run time
+
+In this dataset, there are nominal, interval, and ratio variables present. An example of a nominal variable is the gender of the director, expressed as male, female, or NA. There is no order to these characteristic variables, making them nominal. An example of an interval variable is the release date. The difference between these dates is meaningful, but there is no true zero in dates. An example of a ratio variable is run time, the difference between run times is meaningful and zero minutes of run time would in fact mean the absence of run time.
+
 
 3.  A movie studio wants to know which types of movies are best at generating profit. The measure they use for this is the profitability ratio, which is defined as $$PR=\frac{Revenue}{Budget}.$$ Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -115,19 +113,23 @@ median <- median(movies$PR,na.rm = TRUE)
 max <- max(movies$PR,na.rm = TRUE)
 min <-min(movies$PR,na.rm = TRUE)
 ```
+
+For the new variable called PR, the mean is given as Inf, the median is approximately 1.70496, the maximum is also given as Inf, and the minimum is zero. 
+
 *Step b*
 
-#Some movies have a budget of 0. When you the revenue which is greater than 0 by the budget of 0 it wil result in Inf. This means that the value is not ending.
+Some movies have a budget of 0. When you divide the revenue which greater than 0 by the budget of 0 it wil result in Inf. This means that the value is infinite, or at least too large for the computer. 
 
 
 *Step c*
 
-#NA means not available. it indicates that the value of the budget and/or the revenue is missing.
+NA means not available. It indicates that the value for the PR is missing. In the column PR a specific type of NA is present, which is the NaN (not a number). This is the result of dividing zero by zero, which is not possible and therefore not a number. This can be interpreted as an NA, because a zero in budget and revenue most likely is not the absence of a budget and/or revenue, but simply the unavailability of that value. 
 
 
 *Step d*
 
 ```{r}
+
 
 #WRITE YOUR CODE HERE
 
