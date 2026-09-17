@@ -253,7 +253,7 @@ a.  What is the mean of the variable PR in your data set? \textbf{[2 points]}
 b.  Create a new data set, called movies_sample. Make sure that it is a random sample of your data set of 25 movies. What is the mean of PR in this random sample? How does it compare to the mean of PR in 3a? \textbf{[2 points]}
 c.  In a for loop, create 100 different samples of 25 movies, as in b, and estimate the mean within each sample. Save the mean of each sample in a vector called sample_means. So the first position of the vector would have the mean of the first sample, the second position the mean of the second sample, etc. Print this vector. \textbf{[2 points]}
 d.  Summarize and make a histogram of sample_means. What is the mean, standard deviation and shape of its distribution? \textbf{[2 points]}
-e.  Using the formulas of the *Central Limit Theorem*, give the distribution of the sample mean of PR in a sample of 25 movies from you population (including its expected value and standard deviation). How do these values compare to your answers at d.)? \textbf{[2 points]}
+e.  Using the formulas of the *Central Limit Theorem*, give the distribution of the sample mean of PR in a sample of 25 movies from your population (including its expected value and standard deviation). How do these values compare to your answers at d.)? \textbf{[2 points]}
 
 *step a*
 
@@ -309,10 +309,12 @@ skewness(sample_means)
 For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric. 
 
 *step e*
+``` {r}
 
+```
 **Your Answer:**
 
-Write your formulated response here.
+Don't understand the assignment, ask tomorrow.
 
 # Week 3
 
