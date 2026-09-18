@@ -310,11 +310,14 @@ For clarity, the histogram employs bins with a size of 0.5. The mean of the dist
 
 *step e*
 ``` {r}
-
+PR_mean <- mean(movies$PR, na.rm = TRUE)
+PR_sd <- sd(movies$PR, na.rm = TRUE)/sqrt(25)
+PR_mean
+PR_sd
 ```
 **Your Answer:**
 
-Don't understand the assignment, ask tomorrow.
+The population mean is 2.8646, while the mean of the sample means is 2.7636 and the population standard deviation for a sample of 25 observations is 1.0854, while it is 1.0590 according to the sample mean vector. These values are very similar, but slightly different because the sample size is too small. This is because the distribution of the sample means is asymmetric, causing the Central Limit Theorem to require at least 30 observations per sample to make a valid approximation of the population statistics.
 
 # Week 3
 
@@ -329,9 +332,8 @@ b.  According to IMDB, the average movie is rated with a 6.5. Using your data, t
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
-
+thriller_movies <- filter(movies, movies$genre == "Thriller")
+t_value <- qt(0.995, 115)
 ```
 
 **Your Answer:**
