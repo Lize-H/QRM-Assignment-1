@@ -333,12 +333,13 @@ b.  According to IMDB, the average movie is rated with a 6.5. Using your data, t
 
 ```{r}
 thriller_movies <- filter(movies, movies$genre == "Thriller")
-t_value <- qt(0.995, 115)
+t.test(thriller_movies$vote_average, conf.level = 0.99)$conf.int
+
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The confidence interval of the population mean of vote average with a 99% confidence interval is (5.6759,6.064). This means that the population mean of the vote average is 99% certain to be between 5.6759 and 6.064.
 
 *step b*
 
