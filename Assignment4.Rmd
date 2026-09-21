@@ -352,7 +352,12 @@ t.test(thriller_movies$vote_average, mu = 6.5, alternative = "less")
 
 **Your Answer:**
 
-Step 1: The null hypothesis is \mu
+Step 1: State the hypotheses: $H_0: \mu\geq6.5$ and $H_0:\mu<6.5$. Mu here is the population mean of the vote average of thriller movies. 
+Step 2: Specify the decision rule: this is a one-sided (left-tailed) test and since no significance level has been given, the default of $\alpha=0.05$ will be used. So, the decision rule is that if $p-value<0.05$ the null hypothesis will be rejected.
+Step 3: Collect data and calculate: this can easily be done with the t.test() function and the specification alternative = "less" to make this a left-tailed test. 
+Step 4: the t-test gives a p-value of 3.739e-14, which is a number extremely close to zero, this means that even with 99% certainty ($\alpha=0.01$) the null hypothesis should be rejected, as the probability of observing the sample mean given that the null hypothesis is true is so small, that it is nearly impossible that this is accidental. Therefore, the null hypothesis should be rejected.
+Step 5: Take action: reject the null hypothesis. From the extremely low p-value we can conclude with almost full certainty that the average rating of a thriller movie is not equal or higher than that of the average movie, which is 6.5. 
+
 
 2
 
