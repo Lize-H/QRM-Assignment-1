@@ -222,7 +222,7 @@ length(conditions_met_r) / length(R)
 
 **Your Answer:**
 
-Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at P(90\<=R\<=120)=0.6571782. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
+Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at $P(90 \leq R \leq 120)=0.6571782$. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
 
 *step d*
 
@@ -306,15 +306,17 @@ skewness(sample_means)
 
 **Your Answer:**
 
-For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric. 
+For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric.
 
 *step e*
-``` {r}
+
+```{r}
 PR_mean <- mean(movies$PR, na.rm = TRUE)
 PR_sd <- sd(movies$PR, na.rm = TRUE)/sqrt(25)
 PR_mean
 PR_sd
 ```
+
 **Your Answer:**
 
 The population mean is 2.8646, while the mean of the sample means is 2.7636 and the population standard deviation for a sample of 25 observations is 1.0854, while it is 1.0590 according to the sample mean vector. These values are very similar, but slightly different because the sample size is too small. This is because the distribution of the sample means is asymmetric, causing the Central Limit Theorem to require at least 30 observations per sample to make a valid approximation of the population statistics.
@@ -344,14 +346,13 @@ The confidence interval of the population mean of vote average with a 99% confid
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+t.test(thriller_movies$vote_average, mu = 6.5, alternative = "less")
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Step 1: The null hypothesis is \mu
 
 2
 
