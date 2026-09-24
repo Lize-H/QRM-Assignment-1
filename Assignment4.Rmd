@@ -390,19 +390,23 @@ prop.test(x=216, n=774, p=0.50, conf.level=0.95)
 **Your Answer:**
 
 In this assignment, the NAs are removed, reducing the number of observations in the sample from 808 to 774. We use the proportional distribution of male and female in the sample to assess the chance. 
-$H_0:\pi=0.5$ and $H_1:\pi\neq0.5$, with significance level $\alpha=0.05$. This is a two-tailed test, testing the probability that the proportion of females in the sample is correct, given that the population proportion is 0.5. Given the chosen significance level, the p-value should be below 0.05 in order to reject the null hypothesis. The prop.test function states that the null hypothesis is to be rejected, and that the true population proportion does not equal 0.5. The p-value is extremely close to zero ($p-value<2.2e-16$), meaning it is less than the significance level of 0.05. In conclusion, we reject the null hypothesis that the chance that the lead actor is male or female is equal.
+$H_0:\pi=0.5$ and $H_1:\pi\neq0.5$, with significance level $\alpha=0.05$. This is a two-tailed test, testing the probability that the proportion of females in the sample is correct, given that the population proportion is 0.5. Given the chosen significance level, the p-value should be below 0.05 in order to reject the null hypothesis. The prop.test function states that the null hypothesis is to be rejected, and that the true population proportion does not equal 0.5. The p-value is extremely close to zero ($p-value<2.2e-16$), meaning it is less than the significance level of 0.05. In conclusion, we reject the null hypothesis that the chance that the lead actor is male or female is equal for any movie.
 
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
+#Variance of PR for female lead movies
+female_PR <- subset(movies, first_actor_gender == "female", select =PR)
+var(female_PR$PR, na.rm= TRUE)
 
-
+#Variance of PR for male lead movies
+male_PR <- subset(movies, first_actor_gender == "male", select = PR)
+var(male_PR$PR, na.rm= TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The sample variance of the profitability ratio of a movie with a female lead is 27.12278 and the sample variance of the profitability ratio of a movie with a male lead is 31.33558.
 
 *step d*
 
