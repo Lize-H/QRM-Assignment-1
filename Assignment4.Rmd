@@ -458,14 +458,19 @@ The three most popular genres are Drama, Comedy, and Triller.
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
-
+#Get the mean of PR for each genre
+mean_genre <- movies %>% group_by(genre2) %>% summarise(mean_PR2 = mean(PR, na.rm = TRUE))
+mean(mean_genre$mean_PR2)
+#Make scatterplot
+ggplot(mean_genre, aes(x=genre2, y=mean_PR2)) +
+  geom_point(size = 3) +
+  labs(title = "Mean of PR for each genre", x = "Movie genres", y = "PR mean") +
+  theme_minimal()
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Comedy has the highest PR of all the genres, with a PR of approximately 3.60 and Drama has the lowest PR of all the genres, with a PR of approximately 2.44.
 
 *step c*
 
