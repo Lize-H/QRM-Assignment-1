@@ -438,14 +438,22 @@ d.  Now, create a new data frame which is a random subsample of n=100 of your fu
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
+#Find three most popular genres
+movies %>% count(genre, sort = TRUE)
 
-
+#Create new variable
+movies <- movies %>% mutate(genre2 = case_when(
+  genre %in% "Drama" ~ "Drama",
+  genre %in% "Comedy" ~ "Comedy",
+  genre %in% "Thriller" ~ "Thriller",
+  TRUE ~ "Other"))
+#Frequency table
+table(movies$genre2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The three most popular genres are Drama, Comedy, and Triller. 
 
 *step b*
 
