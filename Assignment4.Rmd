@@ -500,193 +500,27 @@ ggplot(mean_genre_ci, aes(x = genre2, y = mean_PR2))+
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
-
+#Make sample of movies with n=100
+sample_movies <- sample_n(movies, 100)
+#Generate dataset with necessary values for scatterplot
+sample_movies <- sample_movies %>% group_by(genre2) %>% 
+  summarise(
+    n = sum(!is.na(PR)),
+    mean_sample_PR = mean(PR, na.rm = TRUE),
+    sd_sample_PR = sd(PR, na.rm = TRUE),
+    se_sample_PR = sd_sample_PR / sqrt(n),
+    low_ci_sample = mean_sample_PR - qt(0.975, df = n-1)*se_sample_PR,
+    up_ci_sample = mean_sample_PR + qt(0.975, df = n-1)*se_sample_PR
+  )
+#Plot the generated variables in a scatterplot
+ggplot(sample_movies, aes(x= genre2, y= mean_sample_PR )) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = low_ci_sample, ymax = up_ci_sample), width = 0.15) +
+  labs(title = "Sample version of PR mean for each genre with 95% confidence interval", x = "Movie genres", y = "PR mean") +
+  theme_minimal()
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Both the confidence intervals and the means of the PR for each genre from the sample are very different from those of the whole dataset. Note that the y-axis of this scatterplot is distributed slightly different from the one at 3c, so visual comparison needs to be done carefully. The confidence interval of the PR mean of Thriller has increased drastically and that of Drama as well, but not as much as Thriller's. The confidence interval for Other decreased and that of Comedy stayed approximately the same. The PR mean of Thriller increased, but for all other genres the means decreased. 
 
-# Week 4
-
-1.  There is an argument going on in the movie studio. *Bob* claims that production budgets are getting out of hand, and that the studio should focus on making cheaper movies. *Chantal* disagrees. She tells Bob that \`\`The profitability ratio of the movie will remain similar, no matter how much the budget is''.
-
-<!-- -->
-
-a.  Set up a regression model to test Chantal's claim, and estimate it. That is, estimate: $$\text{PR}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.$$ Print a summary of your estimated model. \textbf{[2 points]}
-b.  What is the estimated value of $\beta_1$ how do you interpet it? \textbf{[2 points]}
-c.  Test for the null hypothesis that $\beta_1 = 0$. Report the p-value and state your conclusion. \textbf{[2 points]}
-d.  Who do you think is correct? Bob or Chantal? What would you advise the movie studio to do? \textbf{[2 points]}
-e.  Make a histogram of the residuals of your model. Based on the histogram, do you have any reason to doubt the validity of your model? Explain. \textbf{[2 points]}
-f.  Estimate hatvalues for each observation that you used to estimate your model. Do any hatvalues exceed the critical value? Based on this analysis, do you hvae any reason to doubt the validity of your model? \textbf{[2 points]}
-g.  Based on your analysis in f.), estimate your model again, but remove any outliers. Print a summary of your model and again test for the null hypothesis that $\beta_1 = 0$. What do you conclude? Based on this new model, would your advice to the movie studio in question d. change? \textbf{[2 points]}
-
-*step a*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step b*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step c*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step d*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step e*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step f*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step g*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-2.  
-
-<!-- -->
-
-a.  Make a scatterplot with vote_average on the y-axis, and runtime on the x-axis. Within the same scatterplot, draw a straight line which summarizes the association between the average vote and the runtime. \textbf{[3 points]}
-b.  Using the insights from the scatterplot, your linear model, and your data, find an example of a movie that vastly overperformed. That means, find a movie that had much higher average vote than expected, given its runtime. For this movie, report its vote_average, its predicted vote_average, and its residual. \textbf{[3 points]}
-
-*step a*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step b*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-# Week 5
-
-a.  Create a plot of the mean PR by year of release. Include 95% confidence intervals around each mean Do you see any indication of a time trend in the PR? \textbf{[4 points]}
-b.  Estimate an OLS model which has as dependent variable the PR of a movie, and as independent variable the log of budget, a dummy for each level that genre2 can take, and the year of release. Show a summary of the resulting model and interpret each coefficient. \textbf{[4 points]}
-
-The movie studio that you work is releasing a new movie in May of 2026. It will be a Comedy movie with a budget of 40,000,0000. It will have a runtime of 160 minutes.
-
-c.  Estimate a model that is able to predict the revenue of this movie. Give its predicted revenue and include a 95% prediction interval. \textbf{[6 points]}
-d.  Plot the residuals against various independent variables in the model. Do you find any evidence of heteroskedasticity? \textbf{[2 points]}
-e.  The movie is set in Germany. The director wants to make the movie with only german-speaking actors. The executive producer is strongly against this, as she is afraid that movies that are not english spoken will have a low profit ratio. Estimate a model that can test whether the language spoken impacts the PR of this specific movie. Use an appropriate hypothesis test to test whether the language. What would you advise the movie studio regarding the language to be spoken? \textbf{[6 points]}
-
-*step a*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step b*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step c*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step d*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
-
-**Your Answer:**
-
-Write your formulated response here.
-
-*step e*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
