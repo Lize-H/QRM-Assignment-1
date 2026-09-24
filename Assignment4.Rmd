@@ -475,14 +475,27 @@ Comedy has the highest PR of all the genres, with a PR of approximately 3.60 and
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+#Remake dataset mean_genre with confidence intervals
+mean_genre_ci <- movies %>% group_by(genre2) %>%
+  summarise(
+    n = sum(!is.na(PR)),
+    mean_PR2 = mean(PR, na.rm = TRUE),
+    sd_PR = sd(PR, na.rm = TRUE),
+    se_PR = sd_PR/sqrt(n),
+    lower_ci = mean_PR2 - qt(0.975, df = n-1)*se_PR,
+    upper_ci = mean_PR2 + qt(0.975, df = n-1)*se_PR
+  )
+#Make scatterplot with updated information
+ggplot(mean_genre_ci, aes(x = genre2, y = mean_PR2))+
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.15) +
+  labs(title = "Mean of PR for each genre with 95% confidence interval", x = "Movie genres", y = "PR mean") + theme_minimal()
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+
 
 *step d*
 
