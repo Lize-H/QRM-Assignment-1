@@ -115,7 +115,7 @@ min <-min(movies$PR,na.rm = TRUE)
 
 *Step b*
 
-**Your Answer:** Some movies have a budget of 0. When you divide the revenue which greater than 0 by the budget of 0 it wil result in Inf. This means that the value is infinite, or at least too large for the computer.
+**Your Answer:** Some movies have a budget of 0. When you divide the revenue which greater than 0 by the budget of 0 it will result in Inf. This means that the value is infinite, or at least too large for the computer.
 
 *Step c*
 
@@ -199,7 +199,7 @@ conditions_met_r <- R[ R >= 90 & R <= 120]
 length(conditions_met_r) / length(R)
 ```
 
-**Your Answer:** Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at $P(90 \leq R \leq 120)=0.6571782$. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
+**Your Answer:** Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at $P(90 \leq R \leq 120)=0.6571782$. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is in fact distributed normally.
 
 *step d*
 
