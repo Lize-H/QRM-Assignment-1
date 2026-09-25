@@ -1,0 +1,1450 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{section}{-1}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  showspaces = false,
+  showtabs = false,
+  breaklines,
+  commandchars=\\\{\}
+}
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={QRM II Graded Assignment (4)},
+  pdfauthor={Group 4: Tamara Bakker, Lize den Hertog, Nienke Wielstra},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{QRM II Graded Assignment (4)}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Period 1, 2026}
+\author{Group 4: Tamara Bakker, Lize den Hertog, Nienke Wielstra}
+\date{25-09-2026}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/lizedenhertog/Documents/GitHub/QRM-Assignment-1"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#install.packages("tidyverse")}
+\CommentTok{\#install.packages("renv")}
+\CommentTok{\#install.packages("moments")}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.2.1     v readr     2.2.0
+## v forcats   1.0.1     v stringr   1.6.0
+## v ggplot2   4.0.3     v tibble    3.3.1
+## v lubridate 1.9.5     v tidyr     1.3.2
+## v purrr     1.2.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(renv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'renv'
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     modify
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     embed, update
+## 
+## The following objects are masked from 'package:utils':
+## 
+##     history, upgrade
+## 
+## The following objects are masked from 'package:base':
+## 
+##     autoload, load, remove, use
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(moments)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Introduction}\label{introduction}
+
+This assignment is to be completed in groups of 4-5. Further, all
+students in your group need to be assigned to the same R tutorial group
+(Friday's tutorial). You can sign yourself up for a group on Canvas.
+Please do so
+\textbf{before the start of your first R tutorial on Friday September 4th.}
+You can use the Discussion Board in Canvas if you do not have a group
+yet or if your group is incomplete.
+
+The assignment has 5 parts, and each part corresponds to the course
+material of that week (with the exclusion of week 6, for which there is
+no R programming material).
+
+You are supposed to hand in these assignments on Canvas at the following
+dates:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Deadline 1} \emph{Sunday September 27th, at 23:59pm}: you are
+  supposed to hand in weeks 1, 2, and 3 of this assignment. This will
+  determine 18\% of your overall course grade
+\item
+  \textbf{Deadline 2} \emph{Sunday October 11th, at 23:59pm}: you are
+  supposed to hand in weeks 4, and 5 of this assignment. This will
+  determine 12\% of your overall course grade
+\end{itemize}
+
+The R tutorials (each Friday) will consist of two halves. During the
+first half, you will discuss the tutorial exercises. These can be
+downloaded separately from Canvas. During the second half, you can work
+on this graded assignment within your own group. The purpose is that you
+find out how to work with R for doing statistical analyses by yourself.
+The tutorial exercises are meant to teach you basic commands to get you
+started, but to answer the problem sets in this assignment, you might
+need to research your own solutions, and use functions and commands not
+described in the tutorial exercises. Learning how to solve your own
+research problems is integral part of learning R. When you and your
+group get stuck on how to approach an exercise, the hierarchy in finding
+your way is as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  use the concepts from the tutorial exercises;
+\item
+  use the cheat sheets available on Canvas;
+\item
+  use Google, YouTube, StackOverflow, or another website;
+\item
+  ask the teacher.
+\end{itemize}
+
+The use of generative AI is \textbf{not} permitted and may result in a
+grade of 0. See the AI protocol in the course manual for details.
+
+To answer the assignment, you can simply fill out this R markdown
+document. There are designated places which you can fill with R code.
+There are also designated spaces for you to answer each question. Often,
+the structure of an answer will be as follows. First, you type the R
+code in the designated box. This will show how you analyzed the data to
+get the answer to the question. Below the box for the R code, you will
+then summarize your answer to the question, i.e.~what are the
+conclusions that you draw from the data analysis?
+
+When handing in, you are supposed to submit this .Rmd file, and a
+knitted version of this document. You can knit this document to pdf,
+word, or html. Knitting to pdf requires you to have a .tex distribution
+installed on your computer. Knitting to Word requires you to have Word
+installed.
+
+The exercises are designed such that you should be able to finish the
+majority of them during the tutorial each week. If you are not able to
+finish them fully during that time, you are expected to work on it in
+your own time using the computers on campus or your own device. It is
+best to meet as a group in-person when working together. If you want to
+work remotely, github is a good platform to guarantee smooth
+collaboration. Alternatively, you can email this .Rmd file back and
+forth to one another as a group, but this is not recommended as it is
+more cumbersome.
+
+We encourage you to keep your code blocks, printing statements, and
+final answers, as short as possible. In any case, there is a page limit
+of 6 pages per week, which encompasses the total length of this document
+which consists of the questions, your coding lines, and your answers.
+When your answers to questions of the respective week exceed this page
+limit, they will not be graded, resulting in zero points.
+
+Each week consists of 1, 2, or 3 subquestions. The total amount of
+points you can earn per week is 20 points.
+
+\section{Week 1}\label{week-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find the dataset ``movies4.tsv'' on Canvas. Describe your data set:
+  How many observations does it have. How many variables are there? How
+  many subjects? What consists of a subject? \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies }\OtherTok{\textless{}{-}} \FunctionTok{read\_tsv}\NormalTok{(}\StringTok{"movies4.tsv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 808 Columns: 19
+## -- Column specification --------------------------------------------------------
+## Delimiter: "\t"
+## chr   (8): keywords, original_language, title, genre, first_actor, first_act...
+## dbl  (10): index, budget, popularity, revenue, runtime, vote_average, vote_c...
+## date  (1): release_date
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(movies)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      index          budget               keywords   original_language
+##  Min.   :   1   Min.   :        0   Length   :808   Length   :808    
+##  1st Qu.:1160   1st Qu.:       22   N.unique :702   N.unique : 18    
+##  Median :2342   Median : 15000000   N.blank  :  0   N.blank  :  0    
+##  Mean   :2353   Mean   : 29842216   Min.nchar:  4   Min.nchar:  2    
+##  3rd Qu.:3510   3rd Qu.: 40000000   Max.nchar:106   Max.nchar:  2    
+##  Max.   :4801   Max.   :300000000   NAs      : 87                    
+##        title       popularity         release_date           revenue         
+##  Length   :808   Min.   :2.388e-03   Min.   :1990-03-23   Min.   :0.000e+00  
+##  N.unique :808   1st Qu.:4.898e+00   1st Qu.:2001-11-09   1st Qu.:0.000e+00  
+##  N.blank  :  0   Median :1.270e+01   Median :2007-03-29   Median :1.456e+07  
+##  Min.nchar:  2   Mean   :2.032e+01   Mean   :2006-05-22   Mean   :8.273e+07  
+##  Max.nchar: 59   3rd Qu.:2.656e+01   3rd Qu.:2011-10-04   3rd Qu.:8.521e+07  
+##                  Max.   :2.020e+02   Max.   :2016-07-28   Max.   :1.520e+09  
+##     runtime       vote_average      vote_count             genre    
+##  Min.   :  0.0   Min.   : 0.000   Min.   :    0.00   Length   :808  
+##  1st Qu.: 93.0   1st Qu.: 5.500   1st Qu.:   54.75   N.unique : 13  
+##  Median :103.0   Median : 6.200   Median :  240.00   N.blank  :  0  
+##  Mean   :105.4   Mean   : 6.039   Mean   :  688.58   Min.nchar:  5  
+##  3rd Qu.:116.0   3rd Qu.: 6.800   3rd Qu.:  776.50   Max.nchar: 11  
+##  Max.   :192.0   Max.   :10.000   Max.   :12002.00   NAs      :  3  
+##   release_year  release_month     release_day       first_actor 
+##  Min.   :1990   Min.   : 1.000   Min.   : 1.00   Length   :808  
+##  1st Qu.:2001   1st Qu.: 4.000   1st Qu.: 8.00   N.unique :555  
+##  Median :2007   Median : 7.000   Median :15.00   N.blank  :  0  
+##  Mean   :2006   Mean   : 6.708   Mean   :15.33   Min.nchar:  5  
+##  3rd Qu.:2011   3rd Qu.: 9.000   3rd Qu.:23.00   Max.nchar: 23  
+##  Max.   :2016   Max.   :12.000   Max.   :31.00   NAs      :  6  
+##  first_actor_gender director_first_name  director_gender
+##  Length   :808      Length   :808       Length   :808   
+##  N.unique :  2      N.unique :357       N.unique :  2   
+##  N.blank  :  0      N.blank  :  0       N.blank  :  0   
+##  Min.nchar:  4      Min.nchar:  2       Min.nchar:  4   
+##  Max.nchar:  6      Max.nchar: 18       Max.nchar:  6   
+##  NAs      : 34      NAs      :  4       NAs      : 43
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{n\_distinct}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{index)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 808
+\end{verbatim}
+
+\#Answer to question 1
+
+The dataset ``movies4.tsv'', renamed to movies in this project, contains
+808 observations of 18 variables (excluding the index). A subject is a
+single, unique object in a dataset and the measured values associated
+with it. There are 808 subjects, which is equal to the amount of
+observations. This is because each observation has a unique index number
+and a unique title as well.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Which of the following types of variables are present in your data
+  set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If
+  present, name one example of such a variable present in your data set.
+  \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(movies)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spc_tbl_ [808 x 19] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ index              : num [1:808] 2256 2473 1514 1512 395 ...
+##  $ budget             : num [1:808] 0.0 1.5e+07 3.2e+07 3.2e+07 8.5e+07 0.0 6.0e+04 0.0 0.0 1.4e+07 ...
+##  $ keywords           : chr [1:808] NA "barcelona spain menage a trois author" "gunslinger revenge prairie shootout pistol" "robbery double life dual identity small town indiana" ...
+##  $ original_language  : chr [1:808] "en" "en" "en" "en" ...
+##  $ title              : chr [1:808] "The Oogieloves in the Big Balloon Adventure" "Vicky Cristina Barcelona" "The Quick and the Dead" "A History of Violence" ...
+##  $ popularity         : num [1:808] 0.286 32.758 16.473 34.629 44.967 ...
+##  $ release_date       : Date[1:808], format: "2012-08-29" "2008-08-15" ...
+##  $ revenue            : num [1:808] 0.00 9.64e+07 1.86e+07 6.07e+07 1.94e+08 ...
+##  $ runtime            : num [1:808] 88 96 107 96 136 92 93 97 138 149 ...
+##  $ vote_average       : num [1:808] 2.2 6.7 6.3 6.9 6.7 7.1 5.1 5.6 6.7 6.1 ...
+##  $ vote_count         : num [1:808] 8 1020 427 832 1225 ...
+##  $ genre              : chr [1:808] "Family" "Drama" "Action" "Drama" ...
+##  $ release_year       : num [1:808] 2012 2008 1995 2005 2006 ...
+##  $ release_month      : num [1:808] 8 8 2 9 12 8 10 9 9 9 ...
+##  $ release_day        : num [1:808] 29 15 9 23 8 4 13 23 3 30 ...
+##  $ first_actor        : chr [1:808] "Christopher Lloyd" "Scarlett Johansson" "Sharon Stone" "Viggo Mortensen" ...
+##  $ first_actor_gender : chr [1:808] "male" "female" "female" "male" ...
+##  $ director_first_name: chr [1:808] "Matthew" "Woody" "Sam" "David" ...
+##  $ director_gender    : chr [1:808] "male" "male" "male" "male" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   index = col_double(),
+##   ..   budget = col_double(),
+##   ..   keywords = col_character(),
+##   ..   original_language = col_character(),
+##   ..   title = col_character(),
+##   ..   popularity = col_double(),
+##   ..   release_date = col_date(format = ""),
+##   ..   revenue = col_double(),
+##   ..   runtime = col_double(),
+##   ..   vote_average = col_double(),
+##   ..   vote_count = col_double(),
+##   ..   genre = col_character(),
+##   ..   release_year = col_double(),
+##   ..   release_month = col_double(),
+##   ..   release_day = col_double(),
+##   ..   first_actor = col_character(),
+##   ..   first_actor_gender = col_character(),
+##   ..   director_first_name = col_character(),
+##   ..   director_gender = col_character()
+##   .. )
+##  - attr(*, "problems")=<pointer: 0xad6d0b620>
+\end{verbatim}
+
+In this dataset, there are nominal, interval, and ratio variables
+present. An example of a nominal variable is the gender of the director,
+expressed as male, female, or NA. There is no order to these
+characteristic variables, making them nominal. An example of an interval
+variable is the release date. The difference between these dates is
+meaningful, but there is no true zero in dates. An example of a ratio
+variable is run time, the difference between run times is meaningful and
+zero minutes of run time would in fact mean the absence of run time.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  A movie studio wants to know which types of movies are best at
+  generating profit. The measure they use for this is the profitability
+  ratio, which is defined as \[PR=\frac{Revenue}{Budget}.\] Perform the
+  following steps to provide the movie studio with an analysis which
+  corresponds to their request:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create the variable PR as the revenue of a movie divided by its
+  budget. Report its mean, median, maximum, and minimum.
+  \textbf{[2 points]}
+\item
+  As you can probably see from your answer in a.), some movies have a PR
+  of ``Inf''. What does this mean? Why are some movies assigned this
+  value? \textbf{[2 points]}
+\item
+  As you can probably see from your answer in a.), some movies have a PR
+  of ``NA''. What does this mean? Why are some movies assigned this
+  value? \textbf{[2 points]}
+\item
+  For the movies that have a PR of ``Inf'', set its PR to ``NA''. After
+  doing this, report the mean, median, maximum, and minimum of PR. How
+  do you interpret the mean? \textbf{[2 points]}
+\item
+  What does a PR of at least one mean? What is the fraction of movies
+  that have a PR of at least one? \textbf{[2 points]}
+\item
+  Create a boxplot of the variable PR. Make sure it has an appropriate
+  title, and appropriate titles and labels for the x- and y-axis.
+  Describe the shape of the boxplot. Give \(Q_1\), \(Q_2\), \(Q_3\) and
+  \(Q_4\). What does this tell you about the nature of making money in
+  the movies industry? \textbf{[2 points]}
+\end{enumerate}
+
+For each step, you should provide first all the code you used to answer
+the question and then formulate an answer using full sentences.
+
+\emph{Step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creating the new variable PR}
+\NormalTok{movies}\SpecialCharTok{$}\NormalTok{PR }\OtherTok{\textless{}{-}}\NormalTok{ movies}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{/}\NormalTok{ movies}\SpecialCharTok{$}\NormalTok{budget}
+
+\CommentTok{\#Computing the summary statistics}
+\NormalTok{mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{median }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{max }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{min }\OtherTok{\textless{}{-}}\FunctionTok{min}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR,}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For the new variable called PR, the mean is given as Inf, the median is
+approximately 1.70496, the maximum is also given as Inf, and the minimum
+is zero.
+
+\emph{Step b}
+
+Some movies have a budget of 0. When you divide the revenue which
+greater than 0 by the budget of 0 it wil result in Inf. This means that
+the value is infinite, or at least too large for the computer.
+
+\emph{Step c}
+
+NA means not available. It indicates that the value for the PR is
+missing. In the column PR a specific type of NA is present, which is the
+NaN (not a number). This is the result of dividing zero by zero, which
+is not possible and therefore not a number. This can be interpreted as
+an NA, because a zero in budget and revenue most likely is not the
+absence of a budget and/or revenue, but simply the unavailability of
+that value.
+
+\emph{Step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Turning Inf into NA}
+\NormalTok{movies}\SpecialCharTok{$}\NormalTok{PR[}\FunctionTok{is.infinite}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR)]}\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\CommentTok{\#Computing the new summary statistics}
+\NormalTok{new\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{new\_median }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{new\_max }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{new\_min }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Now that the infinite values have been replaced with NA in the column
+PR, the mean is approximately 2.8646, the median is approximately
+1.5358, the maximum is approximately 73.6715, and the minimum has
+remained 0. The mean can be interpreted as the fact that on average, a
+movie earned 2.6846 times the budget in revenue.
+
+\emph{Step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR}\SpecialCharTok{\textgreater{}=}\DecValTok{1} \SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4566832
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR}\SpecialCharTok{\textgreater{}=}\DecValTok{1}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6059113
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+A movie with a PR of at least one means that the movie is at least break
+even or has made a profit. A PR of one is the border between a movie
+that made a loss and a movie that made a profit. The fraction of movies
+with a PR of at least one is approximately 0.4567 when including the NAs
+as observations that do not fulfill the condition. When completely
+excluding the NAs in computing the fraction, the fraction becomes
+approximately 0.6059
+
+\emph{Step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Computing the box plot}
+\FunctionTok{boxplot}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{main =} \StringTok{"Boxplot of Profitability ratio"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Profitability ratio"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{range =} \DecValTok{0}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment4_files/Assignment4_files/figure-latex/unnamed-chunk-6-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Computing the Quartiles}
+\FunctionTok{quantile}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         0%        25%        50%        75%       100% 
+##  0.0000000  0.3667304  1.5358255  3.4484473 73.6714634
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The boxplot is extremely unfairly distributed. The first 25\% of the
+observations is barely visible and the interquartile range (25-75\%) is
+very small as well. The highest 25\% however, is extremely widespread.
+This illustrates that the profitability ratios are unfairly distributed
+between movies. The first quartile is 0.3667, the second quartile, also
+known as the median, is 1.5358, the third quartile is 3.4484, and the
+fourth quartile, also known as the maximum, is 73.6715 (all these values
+have been rounded down to four decimals). These numbers show that very
+few make a lot of money in the movie industry, and that most make
+significantly smaller profits. So, the nature the movie industry is that
+most barely make a profit or even make a loss, while only a few make
+huge profits.
+
+\section{Week 2}\label{week-2}
+
+1 Is your dataset movies4.tsv the full population, or is it a sample of
+a larger population? If the latter, how would you describe the full
+population? \textbf{[4 points]}
+
+\textbf{Your Answer}
+
+The dataset is a sample of the population. The dataset includes a
+limited amount of movies from 1990 until 2016. As it only includes 808
+movies, which is a limited amount, as there were a lot more movies that
+were published in this timespan. The full dataset could be all the
+movies that have information on the variables included in the dataset
+(such as, runtime, director, etc.) published from 1990 until 2016.
+
+2 Let M be the event that a movie director is male. Let R be the runtime
+of the movie.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Using your data, calculate \(P(M)\). What is \(P(M')\)?. Calculate
+  \(P(M')\) as well. \textbf{[1 point]}
+\item
+  Assume R is normally distributed with \(\mu=107\) and \(\sigma=22\),
+  calculate \(P(90 \leq R \leq 120)\). \textbf{[1 point]}
+\item
+  Calculate \(P(90 \leq R \leq 120)\) empirically using your data. How
+  accurate were the assumptions about the distribution of R in 2b? Which
+  of the assumptions do you consider the most suspect? Explain.
+  \textbf{[2 points]}
+\item
+  Using your data, calculate \(P(120 \leq R | M')\) \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{male\_or\_not }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{male\_or\_not[}\FunctionTok{is.na}\NormalTok{(male\_or\_not)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{probability\_male }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(male\_or\_not)}
+\NormalTok{probability\_male}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8477723
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{female\_or\_not }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{female\_or\_not[}\FunctionTok{is.na}\NormalTok{(female\_or\_not)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{probability\_female }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(female\_or\_not)}
+\NormalTok{probability\_female}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0990099
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The probability that a director is a male P(M)=0.8477723. The
+probability that a director is not a male (is a female) is
+P(M')=0.0990099.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pnorm}\NormalTok{(}\DecValTok{120}\NormalTok{, }\AttributeTok{mean=} \DecValTok{107}\NormalTok{, }\AttributeTok{sd =} \DecValTok{22}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{pnorm}\NormalTok{(}\DecValTok{90}\NormalTok{, }\AttributeTok{mean =} \DecValTok{107}\NormalTok{, }\AttributeTok{sd =} \DecValTok{22}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5028674
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+According to normal distribution, the probability that runtime, denoted
+by R, is between 90 and 120 minutes is 0.5028674.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{R }\OtherTok{\textless{}{-}}\NormalTok{ movies}\SpecialCharTok{$}\NormalTok{runtime}
+\NormalTok{conditions\_met\_r }\OtherTok{\textless{}{-}}\NormalTok{ R[ R }\SpecialCharTok{\textgreater{}=} \DecValTok{90} \SpecialCharTok{\&}\NormalTok{ R }\SpecialCharTok{\textless{}=} \DecValTok{120}\NormalTok{]}
+\FunctionTok{length}\NormalTok{(conditions\_met\_r) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(R)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6571782
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Empirically, the probability of the runtime being between 90 and 120
+minutes lies higher than the probability in case of normal distribution,
+at \(P(90 \leq R \leq 120)=0.6571782\). Which probability is more
+trustworthy depends on what probability it is supposed to represent. If
+it is supposed to represent the probability within this sample,
+empirical probability is the most trustworthy. However, if it is
+supposed to represent the probability of the entire population, the
+probability according to normal distribution would be the most accurate,
+assuming that runtime is infact distributed normally.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Probability of runtime more or equal to 120 minutes}
+\NormalTok{meq\_120\_min }\OtherTok{\textless{}{-}}\NormalTok{ R[R}\SpecialCharTok{\textgreater{}=}\DecValTok{120}\NormalTok{]}
+\NormalTok{prob\_120\_min }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(meq\_120\_min)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(R)}
+
+\CommentTok{\#Probability that a director is female}
+\NormalTok{probability\_female}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0990099
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Probability of intersection of female director and runtime}
+\NormalTok{intersect\_fem\_r }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{runtime}\SpecialCharTok{\textgreater{}=}\DecValTok{120} \SpecialCharTok{\&}\NormalTok{ movies}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{prob\_intersect }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(intersect\_fem\_r)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{runtime)}
+\NormalTok{intersect\_fem\_r}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Probability of the union of female director and runtime \textgreater{}= 120 min}
+\NormalTok{prob\_union }\OtherTok{\textless{}{-}}\NormalTok{ prob\_120\_min }\SpecialCharTok{+}\NormalTok{ probability\_female }\SpecialCharTok{{-}}\NormalTok{ prob\_intersect}
+\NormalTok{prob\_union}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2970297
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The probability of the union between a runtime of 120 minutes or more
+and a female director is 0.2970.
+
+3 For this question, you will again use the profitability ratio PR. Make
+sure that PR is defined the same way as in question 3d of week 1. For
+this question, you will assume that your data set is the full
+population.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  What is the mean of the variable PR in your data set?
+  \textbf{[2 points]}
+\item
+  Create a new data set, called movies\_sample. Make sure that it is a
+  random sample of your data set of 25 movies. What is the mean of PR in
+  this random sample? How does it compare to the mean of PR in 3a?
+  \textbf{[2 points]}
+\item
+  In a for loop, create 100 different samples of 25 movies, as in b, and
+  estimate the mean within each sample. Save the mean of each sample in
+  a vector called sample\_means. So the first position of the vector
+  would have the mean of the first sample, the second position the mean
+  of the second sample, etc. Print this vector. \textbf{[2 points]}
+\item
+  Summarize and make a histogram of sample\_means. What is the mean,
+  standard deviation and shape of its distribution? \textbf{[2 points]}
+\item
+  Using the formulas of the \emph{Central Limit Theorem}, give the
+  distribution of the sample mean of PR in a sample of 25 movies from
+  your population (including its expected value and standard deviation).
+  How do these values compare to your answers at d.)?
+  \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{new\_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.864599
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The mean of the variable PR is approximately 2.8646
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies\_sample }\OtherTok{\textless{}{-}} \FunctionTok{sample\_n}\NormalTok{(movies, }\DecValTok{25}\NormalTok{)}
+\FunctionTok{mean}\NormalTok{(movies\_sample}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.839966
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The sample mean of variable PR from a sample of 25 random observations
+is approximately 2.3770. This is approximately 0.5 lower than the
+population mean.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sample\_means }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{ }
+\NormalTok{  current\_sample }\OtherTok{\textless{}{-}} \FunctionTok{sample\_n}\NormalTok{(movies, }\DecValTok{25}\NormalTok{)}
+\NormalTok{  sample\_means[i]}\OtherTok{\textless{}{-}}\FunctionTok{mean}\NormalTok{(current\_sample}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)\}}
+\FunctionTok{print}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 2.643019 1.995886 7.559805 1.803329 4.831636 2.805518 3.106148 2.620885
+##   [9] 5.057747 2.350438 5.014435 1.965288 3.119554 1.203798 5.071724 1.349785
+##  [17] 2.585474 1.617837 1.885651 1.562128 4.345336 4.179532 3.397538 2.352242
+##  [25] 1.989965 2.399174 1.681069 3.201908 2.041824 2.628261 2.595015 3.140597
+##  [33] 2.860639 3.889099 1.571107 2.439377 2.058612 2.053946 1.858406 2.224269
+##  [41] 3.878084 1.677960 3.431656 2.701139 1.451215 1.692486 1.988644 1.567206
+##  [49] 2.996856 1.551769 4.206038 1.441155 3.998500 3.050962 1.597925 4.143875
+##  [57] 1.367026 1.426357 2.779615 3.652902 2.153863 2.024470 2.248633 7.101202
+##  [65] 2.223485 4.687699 1.972612 2.696929 1.412101 1.953287 3.895763 2.381657
+##  [73] 2.329194 2.229109 2.580899 3.143096 3.545208 3.025264 2.148529 5.712381
+##  [81] 1.741378 3.276144 2.171743 3.573702 1.761485 2.347990 1.808567 2.690485
+##  [89] 2.210536 2.061510 1.736384 2.875762 2.353287 2.400756 2.414941 3.892606
+##  [97] 3.196269 2.605400 1.975149 2.971314
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+(no idea what to say)
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create Histogram}
+\FunctionTok{hist}\NormalTok{(sample\_means, }\AttributeTok{main =} \StringTok{"Sample Means"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Mean Values"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{breaks =} \DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment4_files/Assignment4_files/figure-latex/unnamed-chunk-14-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Compute descriptive statistics}
+\FunctionTok{mean}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.731902
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.174377
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kurtosis}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.367079
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skewness}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.623063
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+For clarity, the histogram employs bins with a size of 0.5. The mean of
+the distribution of the sample means is 2.7636 and the standard
+deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5
+with tails to 1 and to 5.5 and one ``outlier'' at 7.5-8. Mathematically,
+the kurtosis is 7.046 and the skewness is 1.6461. This means that the
+distribution has a heavy tail to the right and is asymmetric.
+
+\emph{step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PR\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{PR\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{25}\NormalTok{)}
+\NormalTok{PR\_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.864599
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PR\_sd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.085395
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The population mean is 2.8646, while the mean of the sample means is
+2.7636 and the population standard deviation for a sample of 25
+observations is 1.0854, while it is 1.0590 according to the sample mean
+vector. These values are very similar, but slightly different because
+the sample size is too small. This is because the distribution of the
+sample means is asymmetric, causing the Central Limit Theorem to require
+at least 30 observations per sample to make a valid approximation of the
+population statistics.
+
+\section{Week 3}\label{week-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For the next part of the assignment, assume that the movies in your
+  data frame are a random sample of a larger population of movies.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Create a new data set that only includes movies that are of the genre
+  ``Thriller''. For these thriller movies, give a 99 percent confidence
+  interval for the variable \emph{vote\_average}. \textbf{[2 points]}
+\item
+  According to IMDB, the average movie is rated with a 6.5. Using your
+  data, test for the null hypothesis that thriller movies are at least
+  as good as the average movie, against the alternative hypothesis that
+  thriller movies are rated worse than the average movie. Test this
+  hypothesis using an approporiate five-step procedure. What is your
+  p-value and what do you conclude? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{thriller\_movies }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(movies, movies}\SpecialCharTok{$}\NormalTok{genre }\SpecialCharTok{==} \StringTok{"Thriller"}\NormalTok{)}
+\FunctionTok{t.test}\NormalTok{(thriller\_movies}\SpecialCharTok{$}\NormalTok{vote\_average, }\AttributeTok{conf.level =} \FloatTok{0.99}\NormalTok{)}\SpecialCharTok{$}\NormalTok{conf.int}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.675877 6.063778
+## attr(,"conf.level")
+## [1] 0.99
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The confidence interval of the population mean of vote average with a
+99\% confidence interval is (5.6759,6.064). This means that the
+population mean of the vote average is 99\% certain to be between 5.6759
+and 6.064.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(thriller\_movies}\SpecialCharTok{$}\NormalTok{vote\_average, }\AttributeTok{mu =} \FloatTok{6.5}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  thriller_movies$vote_average
+## t = -8.5103, df = 115, p-value = 3.739e-14
+## alternative hypothesis: true mean is less than 6.5
+## 95 percent confidence interval:
+##      -Inf 5.992615
+## sample estimates:
+## mean of x 
+##  5.869828
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Step 1: State the hypotheses: \(H_0: \mu\geq6.5\) and \(H_0:\mu<6.5\).
+Mu here is the population mean of the vote average of thriller movies.
+Step 2: Specify the decision rule: this is a one-sided (left-tailed)
+test and since no significance level has been given, the default of
+\(\alpha=0.05\) will be used. So, the decision rule is that if
+\(p-value<0.05\) the null hypothesis will be rejected. Step 3: Collect
+data and calculate: this can easily be done with the t.test() function
+and the specification alternative = ``less'' to make this a left-tailed
+test. Step 4: the t-test gives a p-value of 3.739e-14, which is a number
+extremely close to zero, this means that even with 99\% certainty
+(\(\alpha=0.01\)) the null hypothesis should be rejected, as the
+probability of observing the sample mean given that the null hypothesis
+is true is so small, that it is nearly impossible that this is
+accidental. Therefore, the null hypothesis should be rejected. Step 5:
+Take action: reject the null hypothesis. From the extremely low p-value
+we can conclude with almost full certainty that the average rating of a
+thriller movie is not equal or higher than that of the average movie,
+which is 6.5.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  How many movies in your sample had a female lead actor? How many had a
+  male lead actor? \textbf{[2 points]}
+\item
+  Test the null hypothesis that for any given movie the chance that the
+  lead actor is male or female is equal. Clearly state your null
+  hypothesis and alternative hypothesis, and your chosen significance
+  level. Use an appropriate R function to test your hypothesis, and
+  state your conclusion. Also give the p-value that corresponds to your
+  test statistic. \textbf{[2 points]}
+\item
+  What is the variance of the profitability ratio (PR) for movies with a
+  male lead actor? What is the variance of profitability ratio for
+  movies with a female lead actor? Make sure that PR is defined in the
+  same way as in week 1. \textbf{[2 points]}
+\item
+  Assume that the variance of PR for movies with a male lead actor in
+  your data is the same as the variance for movies with a male lead
+  actor in your population (that is, there is no sampling uncertainty in
+  this estimate). Now, set up a hypothesis test to test for the null
+  hypothesis that the PR for movies with a female lead is equal to the
+  variance for movies with a male lead actor. Clearly state your null
+  hypothesis and alternative hypothesis, and your chosen significance
+  level. Calculate your test statistic and tell how your test statistic
+  is distributed, and state your conclusion. Also give the p-value that
+  corresponds to your test statistic. \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(first\_actor\_gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   first_actor_gender     n
+##   <chr>              <int>
+## 1 female               216
+## 2 male                 558
+## 3 <NA>                  34
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+In the sample, 216 movies have a female lead actor and 558 movies have a
+male lead actor. There are 34 movies for which the gender of the lead is
+marked as not available.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Remove NAs}
+\NormalTok{gender\_clean }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{first\_actor\_gender)}
+\FunctionTok{length}\NormalTok{(gender\_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 774
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Compute prop.test (using the numbers computed in step a)}
+\FunctionTok{prop.test}\NormalTok{(}\AttributeTok{x=}\DecValTok{216}\NormalTok{, }\AttributeTok{n=}\DecValTok{774}\NormalTok{, }\AttributeTok{p=}\FloatTok{0.50}\NormalTok{, }\AttributeTok{conf.level=}\FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  216 out of 774, null probability 0.5
+## X-squared = 150.23, df = 1, p-value < 2.2e-16
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2480000 0.3123661
+## sample estimates:
+##         p 
+## 0.2790698
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+In this assignment, the NAs are removed, reducing the number of
+observations in the sample from 808 to 774. We use the proportional
+distribution of male and female in the sample to assess the chance.
+\(H_0:\pi=0.5\) and \(H_1:\pi\neq0.5\), with significance level
+\(\alpha=0.05\). This is a two-tailed test, testing the probability that
+the proportion of females in the sample is correct, given that the
+population proportion is 0.5. Given the chosen significance level, the
+p-value should be below 0.05 in order to reject the null hypothesis. The
+p-value is extremely close to zero (\(p-value<2.2e-16\)), meaning it is
+less than the significance level of 0.05. In conclusion, we reject the
+null hypothesis that the chance that the lead actor is male or female is
+equal for any movie with 95\% certainty (although the p-value is so low
+that it could also be 99\% certainty)
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Variance of PR for female lead movies}
+\NormalTok{female\_PR }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(movies, first\_actor\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\AttributeTok{select =}\NormalTok{PR)}
+\NormalTok{female\_var }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(female\_PR}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm=} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{female\_var}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 27.12278
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Variance of PR for male lead movies}
+\NormalTok{male\_PR }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(movies, first\_actor\_gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{, }\AttributeTok{select =}\NormalTok{ PR)}
+\NormalTok{male\_var }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(male\_PR}\SpecialCharTok{$}\NormalTok{PR, }\AttributeTok{na.rm=} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{male\_var}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31.33558
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The sample variance of the profitability ratio of a movie with a female
+lead is 27.12278 and the sample variance of the profitability ratio of a
+movie with a male lead is 31.33558.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The needed variables}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(female\_PR}\SpecialCharTok{$}\NormalTok{PR)}
+\NormalTok{female\_var}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 27.12278
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{male\_var}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 31.33558
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#The chi square value}
+\NormalTok{chi\_square }\OtherTok{\textless{}{-}}\NormalTok{ (n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{female\_var}\SpecialCharTok{/}\NormalTok{male\_var}
+\NormalTok{chi\_square}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 186.0951
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Computing the p{-}value}
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{*}\FunctionTok{min}\NormalTok{(}\FunctionTok{pchisq}\NormalTok{(chi\_square, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{), }\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pchisq}\NormalTok{(chi\_square, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{))}
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.152929
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The hypotheses are: \(H_0:\sigma^2_f=\sigma^2_m=31.33558\) and
+\(H_1:\sigma^2_f\neq\sigma^2_m=31.33558\), with a significance level of
+\(\alpha=0.05\) (95\% certainty). The test statistic needed for test is
+a chi-square test statistic, this test statistic follows a asymmetric
+and positive distribution. The chi-square-value is \(\chi^2=186.0951\)
+and the p-value is \(p-value=0.152929\) and since \(0.152929>0.05\), the
+probability that the difference between the sample statistic and the
+population statistic is due to luck is too big to reject the null
+hypothesis, so we do not reject the null hypothesis. Therefore, we
+reject the alternative hypothesis that the variance of PR for female
+leads is not equal to the variance of PR for male leads and we do not
+reject the null hypothesis that they are equal to each other, because
+the p-value is too high.
+
+3
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create a new variable called genre2. Make sure that the three most
+  popular genres remain the same, but that all the other genres get
+  categorized into one genre called ``Other''. Report a frequency table
+  of this new variable genre2. \textbf{[2 points]}
+\item
+  Create a scatter plot with each type of genre2 on the x axis and the
+  mean of PR within that genre on the y-axis. Make sure it has an
+  appropriate title, and appropriate titles and labels for the x- and
+  y-axis. Which movie genre has the highest PR? Which has the lowest?
+  \textbf{[2 points]}
+\item
+  Recreate the scatter plot, but now add bars around each point,
+  indicating the 95\% confidence interval. \textbf{[2 points]}
+\item
+  Now, create a new data frame which is a random subsample of n=100 of
+  your full data frame. Recreate the plot in c.) How do the confidence
+  intervals compare to the confidence intervals you plotted in c.)?
+  \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Find three most popular genres}
+\NormalTok{movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{(genre, }\AttributeTok{sort =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14 x 2
+##    genre           n
+##    <chr>       <int>
+##  1 Drama         402
+##  2 Comedy        186
+##  3 Thriller      116
+##  4 Action         41
+##  5 Adventure      16
+##  6 Family         11
+##  7 Horror         11
+##  8 Documentary     9
+##  9 Fiction         5
+## 10 Music           4
+## 11 <NA>            3
+## 12 Crime           2
+## 13 Romance         1
+## 14 Western         1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create new variable}
+\NormalTok{movies }\OtherTok{\textless{}{-}}\NormalTok{ movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{genre2 =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{  genre }\SpecialCharTok{\%in\%} \StringTok{"Drama"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Drama"}\NormalTok{,}
+\NormalTok{  genre }\SpecialCharTok{\%in\%} \StringTok{"Comedy"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Comedy"}\NormalTok{,}
+\NormalTok{  genre }\SpecialCharTok{\%in\%} \StringTok{"Thriller"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Thriller"}\NormalTok{,}
+  \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"Other"}\NormalTok{))}
+\CommentTok{\#Frequency table}
+\FunctionTok{table}\NormalTok{(movies}\SpecialCharTok{$}\NormalTok{genre2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##   Comedy    Drama    Other Thriller 
+##      186      402      104      116
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The three most popular genres are Drama, Comedy, and Thriller.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Get the mean of PR for each genre}
+\NormalTok{mean\_genre }\OtherTok{\textless{}{-}}\NormalTok{ movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(genre2) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_PR2 =} \FunctionTok{mean}\NormalTok{(PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\FunctionTok{mean}\NormalTok{(mean\_genre}\SpecialCharTok{$}\NormalTok{mean\_PR2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.986888
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Make scatterplot}
+\FunctionTok{ggplot}\NormalTok{(mean\_genre, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{genre2, }\AttributeTok{y=}\NormalTok{mean\_PR2)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Mean of PR for each genre"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Movie genres"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PR mean"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment4_files/Assignment4_files/figure-latex/unnamed-chunk-23-1.pdf}}
+
+\textbf{Your Answer:}
+
+Comedy has the highest PR of all the genres, with a PR of approximately
+3.60 and Drama has the lowest PR of all the genres, with a PR of
+approximately 2.44.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Remake dataset mean\_genre with confidence intervals}
+\NormalTok{mean\_genre\_ci }\OtherTok{\textless{}{-}}\NormalTok{ movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(genre2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(PR)),}
+    \AttributeTok{mean\_PR2 =} \FunctionTok{mean}\NormalTok{(PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_PR =} \FunctionTok{sd}\NormalTok{(PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{se\_PR =}\NormalTok{ sd\_PR}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n),}
+    \AttributeTok{lower\_ci =}\NormalTok{ mean\_PR2 }\SpecialCharTok{{-}} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{se\_PR,}
+    \AttributeTok{upper\_ci =}\NormalTok{ mean\_PR2 }\SpecialCharTok{+} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{se\_PR}
+\NormalTok{  )}
+\CommentTok{\#Make scatterplot with updated information}
+\FunctionTok{ggplot}\NormalTok{(mean\_genre\_ci, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ genre2, }\AttributeTok{y =}\NormalTok{ mean\_PR2))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ lower\_ci, }\AttributeTok{ymax =}\NormalTok{ upper\_ci), }\AttributeTok{width =} \FloatTok{0.15}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Mean of PR for each genre with 95\% confidence interval"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Movie genres"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PR mean"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment4_files/Assignment4_files/figure-latex/unnamed-chunk-24-1.pdf}}
+
+\textbf{Your Answer:}
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Make sample of movies with n=100}
+\NormalTok{sample\_movies }\OtherTok{\textless{}{-}} \FunctionTok{sample\_n}\NormalTok{(movies, }\DecValTok{100}\NormalTok{)}
+\CommentTok{\#Generate dataset with necessary values for scatterplot}
+\NormalTok{sample\_movies }\OtherTok{\textless{}{-}}\NormalTok{ sample\_movies }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(genre2) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{n =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(PR)),}
+    \AttributeTok{mean\_sample\_PR =} \FunctionTok{mean}\NormalTok{(PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{sd\_sample\_PR =} \FunctionTok{sd}\NormalTok{(PR, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{se\_sample\_PR =}\NormalTok{ sd\_sample\_PR }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n),}
+    \AttributeTok{low\_ci\_sample =}\NormalTok{ mean\_sample\_PR }\SpecialCharTok{{-}} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{se\_sample\_PR,}
+    \AttributeTok{up\_ci\_sample =}\NormalTok{ mean\_sample\_PR }\SpecialCharTok{+} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{se\_sample\_PR}
+\NormalTok{  )}
+\CommentTok{\#Plot the generated variables in a scatterplot}
+\FunctionTok{ggplot}\NormalTok{(sample\_movies, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ genre2, }\AttributeTok{y=}\NormalTok{ mean\_sample\_PR )) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ low\_ci\_sample, }\AttributeTok{ymax =}\NormalTok{ up\_ci\_sample), }\AttributeTok{width =} \FloatTok{0.15}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sample version of PR mean for each genre with 95\% confidence interval"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Movie genres"}\NormalTok{, }\AttributeTok{y =} \StringTok{"PR mean"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment4_files/Assignment4_files/figure-latex/unnamed-chunk-25-1.pdf}}
+
+\textbf{Your Answer:}
+
+Both the confidence intervals and the means of the PR for each genre
+from the sample are very different from those of the whole dataset. Note
+that the y-axis of this scatterplot is distributed slightly different
+from the one at 3c, so visual comparison needs to be done carefully. The
+confidence interval of the PR mean of Thriller has increased drastically
+and that of Drama as well, but not as much as Thriller's. The confidence
+interval for Other decreased and that of Comedy stayed approximately the
+same. The PR mean of Thriller increased, but for all other genres the
+means decreased.
+
+\end{document}

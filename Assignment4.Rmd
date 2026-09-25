@@ -1,14 +1,14 @@
 ---
 title: "QRM II Graded Assignment (4)"
-subtitle: "Period 1, 2026"
-author: "Group 4: Tamara Bakker, Lize den Hertog, Nienke Wielstra"
-date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
+author: 'Group 4: Tamara Bakker, Lize den Hertog, Nienke Wielstra'
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
-  pdf_document:
-    number_sections: true
+  word_document: default
   html_document:
     df_print: paged
-
+  pdf_document:
+    number_sections: true
+subtitle: Period 1, 2026
 header-includes:
 - "\\setcounter{section}{-1}"
 - |
@@ -18,15 +18,10 @@ header-includes:
     showtabs = false,
     breaklines,
     commandchars=\\\{\}
-  }
 format:
   html:
     code-overflow: wrap
 ---
-
-```{r studio, working directory}
-getwd()
-```
 
 ```{r setup, packages}
 #install.packages("tidyverse")
@@ -81,9 +76,7 @@ summary(movies)
 n_distinct(movies$index)
 ```
 
-#Answer to question 1
-
-The dataset "movies4.tsv", renamed to movies in this project, contains 808 observations of 18 variables (excluding the index). A subject is a single, unique object in a dataset and the measured values associated with it. There are 808 subjects, which is equal to the amount of observations. This is because each observation has a unique index number and a unique title as well.
+**Your Answer:** The dataset "movies4.tsv", renamed to movies in this project, contains 808 observations of 18 variables (excluding the index). A subject is a single, unique object in a dataset and the measured values associated with it. There are 808 subjects, which is equal to the amount of observations. This is because each observation has a unique index number and a unique title as well.
 
 2.  Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); interval; (iv) ratio. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
@@ -91,7 +84,7 @@ The dataset "movies4.tsv", renamed to movies in this project, contains 808 obser
 str(movies)
 ```
 
-In this dataset, there are nominal, interval, and ratio variables present. An example of a nominal variable is the gender of the director, expressed as male, female, or NA. There is no order to these characteristic variables, making them nominal. An example of an interval variable is the release date. The difference between these dates is meaningful, but there is no true zero in dates. An example of a ratio variable is run time, the difference between run times is meaningful and zero minutes of run time would in fact mean the absence of run time.
+**Your Answer:** In this dataset, there are nominal, interval, and ratio variables present. An example of a nominal variable is the gender of the director, expressed as male, female, or NA. There is no order to these characteristic variables, making them nominal. An example of an interval variable is the release date. The difference between these dates is meaningful, but there is no true zero in dates. An example of a ratio variable is run time, the difference between run times is meaningful and zero minutes of run time would in fact mean the absence of run time.
 
 3.  A movie studio wants to know which types of movies are best at generating profit. The measure they use for this is the profitability ratio, which is defined as $$PR=\frac{Revenue}{Budget}.$$ Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -111,7 +104,6 @@ For each step, you should provide first all the code you used to answer the ques
 ```{r}
 #Creating the new variable PR
 movies$PR <- movies$revenue / movies$budget
-
 #Computing the summary statistics
 mean <- mean(movies$PR,na.rm = TRUE)
 median <- median(movies$PR,na.rm = TRUE)
@@ -119,15 +111,15 @@ max <- max(movies$PR,na.rm = TRUE)
 min <-min(movies$PR,na.rm = TRUE)
 ```
 
-For the new variable called PR, the mean is given as Inf, the median is approximately 1.70496, the maximum is also given as Inf, and the minimum is zero.
+**Your Answer:** For the new variable called PR, the mean is given as Inf, the median is approximately 1.70496, the maximum is also given as Inf, and the minimum is zero.
 
 *Step b*
 
-Some movies have a budget of 0. When you divide the revenue which greater than 0 by the budget of 0 it wil result in Inf. This means that the value is infinite, or at least too large for the computer.
+**Your Answer:** Some movies have a budget of 0. When you divide the revenue which greater than 0 by the budget of 0 it wil result in Inf. This means that the value is infinite, or at least too large for the computer.
 
 *Step c*
 
-NA means not available. It indicates that the value for the PR is missing. In the column PR a specific type of NA is present, which is the NaN (not a number). This is the result of dividing zero by zero, which is not possible and therefore not a number. This can be interpreted as an NA, because a zero in budget and revenue most likely is not the absence of a budget and/or revenue, but simply the unavailability of that value.
+**Your Answer:** NA means not available. It indicates that the value for the PR is missing. In the column PR a specific type of NA is present, which is the NaN (not a number). This is the result of dividing zero by zero, which is not possible and therefore not a number. This can be interpreted as an NA, because a zero in budget and revenue most likely is not the absence of a budget and/or revenue, but simply the unavailability of that value.
 
 *Step d*
 
@@ -141,9 +133,7 @@ new_max <- max(movies$PR, na.rm = TRUE)
 new_min <- min(movies$PR, na.rm = TRUE)
 ```
 
-**Your Answer:**
-
-Now that the infinite values have been replaced with NA in the column PR, the mean is approximately 2.8646, the median is approximately 1.5358, the maximum is approximately 73.6715, and the minimum has remained 0. The mean can be interpreted as the fact that on average, a movie earned 2.6846 times the budget in revenue.
+**Your Answer:** Now that the infinite values have been replaced with NA in the column PR, the mean is approximately 2.8646, the median is approximately 1.5358, the maximum is approximately 73.6715, and the minimum has remained 0. The mean can be interpreted as the fact that on average, a movie earned 2.6846 times the budget in revenue.
 
 *Step e*
 
@@ -152,31 +142,24 @@ mean(movies$PR>=1 & !is.na(movies$PR))
 mean(movies$PR>=1, na.rm = TRUE)
 ```
 
-**Your Answer:**
-
-A movie with a PR of at least one means that the movie is at least break even or has made a profit. A PR of one is the border between a movie that made a loss and a movie that made a profit. The fraction of movies with a PR of at least one is approximately 0.4567 when including the NAs as observations that do not fulfill the condition. When completely excluding the NAs in computing the fraction, the fraction becomes approximately 0.6059
+**Your Answer:** A movie with a PR of at least one means that the movie is at least break even or has made a profit. A PR of one is the border between a movie that made a loss and a movie that made a profit. The fraction of movies with a PR of at least one is approximately 0.4567 when including the NAs as observations that do not fulfill the condition. When completely excluding the NAs in computing the fraction, the fraction becomes approximately 0.6059
 
 *Step f*
 
 ```{r}
 #Computing the box plot
 boxplot(movies$PR, main = "Boxplot of Profitability ratio", ylab = "Profitability ratio", col = "lightblue", range = 0, na.rm = TRUE)
-
 #Computing the Quartiles
 quantile(movies$PR, na.rm = TRUE)
 ```
 
-**Your Answer:**
-
-The boxplot is extremely unfairly distributed. The first 25% of the observations is barely visible and the interquartile range (25-75%) is very small as well. The highest 25% however, is extremely widespread. This illustrates that the profitability ratios are unfairly distributed between movies. The first quartile is 0.3667, the second quartile, also known as the median, is 1.5358, the third quartile is 3.4484, and the fourth quartile, also known as the maximum, is 73.6715 (all these values have been rounded down to four decimals). These numbers show that very few make a lot of money in the movie industry, and that most make significantly smaller profits. So, the nature the movie industry is that most barely make a profit or even make a loss, while only a few make huge profits.
+**Your Answer:** The boxplot is extremely unfairly distributed. The first 25% of the observations is barely visible and the interquartile range (25-75%) is very small as well. The highest 25% however, is extremely widespread. This illustrates that the profitability ratios are unfairly distributed between movies. The first quartile is 0.3667, the second quartile, also known as the median, is 1.5358, the third quartile is 3.4484, and the fourth quartile, also known as the maximum, is 73.6715 (all these values have been rounded down to four decimals). These numbers show that very few make a lot of money in the movie industry, and that most make significantly smaller profits. So, the nature the movie industry is that most barely make a profit or even make a loss, while only a few make huge profits.
 
 # Week 2
 
 1 Is your dataset movies4.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
 
-**Your Answer**
-
-The dataset is a sample of the population. The dataset includes a limited amount of movies from 1990 until 2016. As it only includes 808 movies, which is a limited amount, as there were a lot more movies that were published in this timespan. The full dataset could be all the movies that have information on the variables included in the dataset (such as, runtime, director, etc.) published from 1990 until 2016.
+**Your Answer** The dataset is a sample of the population. The dataset includes a limited amount of movies from 1990 until 2016. As it only includes 808 movies, which is a limited amount, as there were a lot more movies that were published in this timespan. The full dataset could be all the movies that have information on the variables included in the dataset (such as, runtime, director, etc.) published from 1990 until 2016.
 
 2 Let M be the event that a movie director is male. Let R be the runtime of the movie.
 
@@ -198,9 +181,7 @@ probability_female <- mean(female_or_not)
 probability_female
 ```
 
-**Your Answer:**
-
-The probability that a director is a male P(M)=0.8477723. The probability that a director is not a male (is a female) is P(M')=0.0990099.
+**Your Answer:** The probability that a director is a male P(M)=0.8477723. The probability that a director is not a male (is a female) is P(M')=0.0990099.
 
 *step b*
 
@@ -208,9 +189,7 @@ The probability that a director is a male P(M)=0.8477723. The probability that a
 pnorm(120, mean= 107, sd = 22) - pnorm(90, mean = 107, sd = 22)
 ```
 
-**Your Answer:**
-
-According to normal distribution, the probability that runtime, denoted by R, is between 90 and 120 minutes is 0.5028674.
+**Your Answer:** According to normal distribution, the probability that runtime, denoted by R, is between 90 and 120 minutes is 0.5028674.
 
 *step c*
 
@@ -220,9 +199,7 @@ conditions_met_r <- R[ R >= 90 & R <= 120]
 length(conditions_met_r) / length(R)
 ```
 
-**Your Answer:**
-
-Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at $P(90 \leq R \leq 120)=0.6571782$. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
+**Your Answer:** Empirically, the probability of the runtime being between 90 and 120 minutes lies higher than the probability in case of normal distribution, at $P(90 \leq R \leq 120)=0.6571782$. Which probability is more trustworthy depends on what probability it is supposed to represent. If it is supposed to represent the probability within this sample, empirical probability is the most trustworthy. However, if it is supposed to represent the probability of the entire population, the probability according to normal distribution would be the most accurate, assuming that runtime is infact distributed normally.
 
 *step d*
 
@@ -230,10 +207,8 @@ Empirically, the probability of the runtime being between 90 and 120 minutes lie
 #Probability of runtime more or equal to 120 minutes
 meq_120_min <- R[R>=120]
 prob_120_min <- length(meq_120_min)/length(R)
-
 #Probability that a director is female
 probability_female
-
 #Probability of intersection of female director and runtime
 intersect_fem_r <- sum(movies$runtime>=120 & movies$director_gender == "female", na.rm = TRUE)
 prob_intersect <- length(intersect_fem_r)/length(movies$runtime)
@@ -262,9 +237,7 @@ new_mean <- mean(movies$PR, na.rm = TRUE)
 new_mean
 ```
 
-**Your Answer:**
-
-The mean of the variable PR is approximately 2.8646
+**Your Answer:** The mean of the variable PR is approximately 2.8646
 
 *step b*
 
@@ -273,9 +246,7 @@ movies_sample <- sample_n(movies, 25)
 mean(movies_sample$PR, na.rm = TRUE)
 ```
 
-**Your Answer:**
-
-The sample mean of variable PR from a sample of 25 random observations is approximately 2.3770. This is approximately 0.5 lower than the population mean.
+**Your Answer:** The sample mean of variable PR from a sample of 25 random observations is approximately 2.3770. This is approximately 0.5 lower than the population mean.
 
 *step c*
 
@@ -289,14 +260,11 @@ print(sample_means)
 
 **Your Answer:**
 
-(no idea what to say)
-
 *step d*
 
 ```{r}
 #Create Histogram
 hist(sample_means, main = "Sample Means", xlab = "Mean Values", col = "lightblue", breaks = 16)
-
 #Compute descriptive statistics
 mean(sample_means)
 sd(sample_means)
@@ -304,9 +272,7 @@ kurtosis(sample_means)
 skewness(sample_means)
 ```
 
-**Your Answer:**
-
-For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric.
+**Your Answer:** For clarity, the histogram employs bins with a size of 0.5. The mean of the distribution of the sample means is 2.7636 and the standard deviation is 1.0590. Visually, the means concentrate between 1.5 and 3.5 with tails to 1 and to 5.5 and one "outlier" at 7.5-8. Mathematically, the kurtosis is 7.046 and the skewness is 1.6461. This means that the distribution has a heavy tail to the right and is asymmetric.
 
 *step e*
 
@@ -317,9 +283,7 @@ PR_mean
 PR_sd
 ```
 
-**Your Answer:**
-
-The population mean is 2.8646, while the mean of the sample means is 2.7636 and the population standard deviation for a sample of 25 observations is 1.0854, while it is 1.0590 according to the sample mean vector. These values are very similar, but slightly different because the sample size is too small. This is because the distribution of the sample means is asymmetric, causing the Central Limit Theorem to require at least 30 observations per sample to make a valid approximation of the population statistics.
+**Your Answer:** The population mean is 2.8646, while the mean of the sample means is 2.7636 and the population standard deviation for a sample of 25 observations is 1.0854, while it is 1.0590 according to the sample mean vector. These values are very similar, but slightly different because the sample size is too small. This is because the distribution of the sample means is asymmetric, causing the Central Limit Theorem to require at least 30 observations per sample to make a valid approximation of the population statistics.
 
 # Week 3
 
@@ -336,28 +300,17 @@ b.  According to IMDB, the average movie is rated with a 6.5. Using your data, t
 ```{r}
 thriller_movies <- filter(movies, movies$genre == "Thriller")
 t.test(thriller_movies$vote_average, conf.level = 0.99)$conf.int
-
 ```
 
-**Your Answer:**
-
-The confidence interval of the population mean of vote average with a 99% confidence interval is (5.6759,6.064). This means that the population mean of the vote average is 99% certain to be between 5.6759 and 6.064.
+**Your Answer:** The confidence interval of the population mean of vote average with a 99% confidence interval is (5.6759,6.064). This means that the population mean of the vote average is 99% certain to be between 5.6759 and 6.064.
 
 *step b*
 
 ```{r}
 t.test(thriller_movies$vote_average, mu = 6.5, alternative = "less")
-
 ```
 
-**Your Answer:**
-
-Step 1: State the hypotheses: $H_0: \mu\geq6.5$ and $H_0:\mu<6.5$. Mu here is the population mean of the vote average of thriller movies. 
-Step 2: Specify the decision rule: this is a one-sided (left-tailed) test and since no significance level has been given, the default of $\alpha=0.05$ will be used. So, the decision rule is that if $p-value<0.05$ the null hypothesis will be rejected.
-Step 3: Collect data and calculate: this can easily be done with the t.test() function and the specification alternative = "less" to make this a left-tailed test. 
-Step 4: the t-test gives a p-value of 3.739e-14, which is a number extremely close to zero, this means that even with 99% certainty ($\alpha=0.01$) the null hypothesis should be rejected, as the probability of observing the sample mean given that the null hypothesis is true is so small, that it is nearly impossible that this is accidental. Therefore, the null hypothesis should be rejected.
-Step 5: Take action: reject the null hypothesis. From the extremely low p-value we can conclude with almost full certainty that the average rating of a thriller movie is not equal or higher than that of the average movie, which is 6.5. 
-
+**Your Answer:** Step 1: State the hypotheses: $H_0: \mu\geq6.5$ and $H_0:\mu<6.5$. Mu here is the population mean of the vote average of thriller movies. Step 2: Specify the decision rule: this is a one-sided (left-tailed) test and since no significance level has been given, the default of $\alpha=0.05$ will be used. So, the decision rule is that if $p-value<0.05$ the null hypothesis will be rejected. Step 3: Collect data and calculate: this can easily be done with the t.test() function and the specification alternative = "less" to make this a left-tailed test. Step 4: the t-test gives a p-value of 3.739e-14, which is a number extremely close to zero, this means that even with 99% certainty ($\alpha=0.01$) the null hypothesis should be rejected, as the probability of observing the sample mean given that the null hypothesis is true is so small, that it is nearly impossible that this is accidental. Therefore, the null hypothesis should be rejected. Step 5: Take action: reject the null hypothesis. From the extremely low p-value we can conclude with almost full certainty that the average rating of a thriller movie is not equal or higher than that of the average movie, which is 6.5.
 
 2
 
@@ -372,9 +325,7 @@ d.  Assume that the variance of PR for movies with a male lead actor in your dat
 movies %>% count(first_actor_gender)
 ```
 
-**Your Answer:**
-
-In the sample, 216 movies have a female lead actor and 558 movies have a male lead actor. There are 34 movies for which the gender of the lead is marked as not available. 
+**Your Answer:** In the sample, 216 movies have a female lead actor and 558 movies have a male lead actor. There are 34 movies for which the gender of the lead is marked as not available.
 
 *step b*
 
@@ -382,15 +333,11 @@ In the sample, 216 movies have a female lead actor and 558 movies have a male le
 #Remove NAs
 gender_clean <- na.omit(movies$first_actor_gender)
 length(gender_clean)
-
 #Compute prop.test (using the numbers computed in step a)
 prop.test(x=216, n=774, p=0.50, conf.level=0.95)
 ```
 
-**Your Answer:**
-
-In this assignment, the NAs are removed, reducing the number of observations in the sample from 808 to 774. We use the proportional distribution of male and female in the sample to assess the chance. 
-$H_0:\pi=0.5$ and $H_1:\pi\neq0.5$, with significance level $\alpha=0.05$. This is a two-tailed test, testing the probability that the proportion of females in the sample is correct, given that the population proportion is 0.5. Given the chosen significance level, the p-value should be below 0.05 in order to reject the null hypothesis. The p-value is extremely close to zero ($p-value<2.2e-16$), meaning it is less than the significance level of 0.05. In conclusion, we reject the null hypothesis that the chance that the lead actor is male or female is equal for any movie with 95% certainty (although the p-value is so low that it could also be 99% certainty)
+**Your Answer:** In this assignment, the NAs are removed, reducing the number of observations in the sample from 808 to 774. We use the proportional distribution of male and female in the sample to assess the chance. $H_0:\pi=0.5$ and $H_1:\pi\neq0.5$, with significance level $\alpha=0.05$. This is a two-tailed test, testing the probability that the proportion of females in the sample is correct, given that the population proportion is 0.5. Given the chosen significance level, the p-value should be below 0.05 in order to reject the null hypothesis. The p-value is extremely close to zero ($p-value<2.2e-16$), meaning it is less than the significance level of 0.05. In conclusion, we reject the null hypothesis that the chance that the lead actor is male or female is equal for any movie with 95% certainty (although the p-value is so low that it could also be 99% certainty)
 
 *step c*
 
@@ -405,9 +352,7 @@ male_var <- var(male_PR$PR, na.rm= TRUE)
 male_var
 ```
 
-**Your Answer:**
-
-The sample variance of the profitability ratio of a movie with a female lead is 27.12278 and the sample variance of the profitability ratio of a movie with a male lead is 31.33558.
+**Your Answer:** The sample variance of the profitability ratio of a movie with a female lead is 27.12278 and the sample variance of the profitability ratio of a movie with a male lead is 31.33558.
 
 *step d*
 
@@ -424,9 +369,7 @@ p_value <- 2*min(pchisq(chi_square, df = n-1), 1 - pchisq(chi_square, df = n-1))
 p_value
 ```
 
-**Your Answer:**
-
-The hypotheses are: $H_0:\sigma^2_f=\sigma^2_m=31.33558$ and $H_1:\sigma^2_f\neq\sigma^2_m=31.33558$, with a significance level of $\alpha=0.05$ (95% certainty). The test statistic needed for test is a chi-square test statistic, this test statistic follows a asymmetric and positive distribution. The chi-square-value is $\chi^2=186.0951$ and the p-value is $p-value=0.152929$ and since $0.152929>0.05$, the probability that the difference between the sample statistic and the population statistic is due to luck is too big to reject the null hypothesis, so we do not reject the null hypothesis. Therefore, we reject the alternative hypothesis that the variance of PR for female leads is not equal to the variance of PR for male leads and we do not reject the null hypothesis that they are equal to each other, because the p-value is too high.
+**Your Answer:** The hypotheses are: $H_0:\sigma^2_f=\sigma^2_m=31.33558$ and $H_1:\sigma^2_f\neq\sigma^2_m=31.33558$, with a significance level of $\alpha=0.05$ (95% certainty). The test statistic needed for test is a chi-square test statistic, this test statistic follows a asymmetric and positive distribution. The chi-square-value is $\chi^2=186.0951$ and the p-value is $p-value=0.152929$ and since $0.152929>0.05$, the probability that the difference between the sample statistic and the population statistic is due to luck is too big to reject the null hypothesis, so we do not reject the null hypothesis. Therefore, we reject the alternative hypothesis that the variance of PR for female leads is not equal to the variance of PR for male leads and we do not reject the null hypothesis that they are equal to each other, because the p-value is too high.
 
 3
 
@@ -440,7 +383,6 @@ d.  Now, create a new data frame which is a random subsample of n=100 of your fu
 ```{r}
 #Find three most popular genres
 movies %>% count(genre, sort = TRUE)
-
 #Create new variable
 movies <- movies %>% mutate(genre2 = case_when(
   genre %in% "Drama" ~ "Drama",
@@ -451,9 +393,7 @@ movies <- movies %>% mutate(genre2 = case_when(
 table(movies$genre2)
 ```
 
-**Your Answer:**
-
-The three most popular genres are Drama, Comedy, and Thriller. 
+**Your Answer:** The three most popular genres are Drama, Comedy, and Thriller.
 
 *step b*
 
@@ -468,9 +408,7 @@ ggplot(mean_genre, aes(x=genre2, y=mean_PR2)) +
   theme_minimal()
 ```
 
-**Your Answer:**
-
-Comedy has the highest PR of all the genres, with a PR of approximately 3.60 and Drama has the lowest PR of all the genres, with a PR of approximately 2.44.
+**Your Answer:** Comedy has the highest PR of all the genres, with a PR of approximately 3.60 and Drama has the lowest PR of all the genres, with a PR of approximately 2.44.
 
 *step c*
 
@@ -490,12 +428,9 @@ ggplot(mean_genre_ci, aes(x = genre2, y = mean_PR2))+
   geom_point(size = 3) +
   geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.15) +
   labs(title = "Mean of PR for each genre with 95% confidence interval", x = "Movie genres", y = "PR mean") + theme_minimal()
-
 ```
 
 **Your Answer:**
-
-
 
 *step d*
 
@@ -520,7 +455,4 @@ ggplot(sample_movies, aes(x= genre2, y= mean_sample_PR )) +
   theme_minimal()
 ```
 
-**Your Answer:**
-
-Both the confidence intervals and the means of the PR for each genre from the sample are very different from those of the whole dataset. Note that the y-axis of this scatterplot is distributed slightly different from the one at 3c, so visual comparison needs to be done carefully. The confidence interval of the PR mean of Thriller has increased drastically and that of Drama as well, but not as much as Thriller's. The confidence interval for Other decreased and that of Comedy stayed approximately the same. The PR mean of Thriller increased, but for all other genres the means decreased. 
-
+**Your Answer:** Both the confidence intervals and the means of the PR for each genre from the sample are very different from those of the whole dataset. Note that the y-axis of this scatterplot is distributed slightly different from the one at 3c, so visual comparison needs to be done carefully. The confidence interval of the PR mean of Thriller has increased drastically and that of Drama as well, but not as much as Thriller's. The confidence interval for Other decreased and that of Comedy stayed approximately the same. The PR mean of Thriller increased, but for all other genres the means decreased.
