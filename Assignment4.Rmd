@@ -25,10 +25,8 @@ format:
 
 ```{r setup, packages}
 #install.packages("tidyverse")
-#install.packages("renv")
 #install.packages("moments")
 library(tidyverse)
-library(renv)
 library(moments)
 ```
 
@@ -84,7 +82,7 @@ n_distinct(movies$index)
 str(movies)
 ```
 
-**Your Answer:** In this dataset, there are nominal, interval, and ratio variables present. An example of a nominal variable is the gender of the director, expressed as male, female, or NA. There is no order to these characteristic variables, making them nominal. An example of an interval variable is the release date. The difference between these dates is meaningful, but there is no true zero in dates. An example of a ratio variable is run time, the difference between run times is meaningful and zero minutes of run time would in fact mean the absence of run time.
+**Your Answer:** In this dataset, there are nominal, interval, and ratio variables present. An example of a nominal variable is the gender of the director, expressed as male and female (or NA). There is no order to these characteristic variables, making them nominal. An example of an interval variable is the release date. The difference between these dates is meaningful, but there is no true zero in dates. An example of a ratio variable is run time, the difference between run times is meaningful and zero minutes of run time would in fact mean the absence of run time.
 
 3.  A movie studio wants to know which types of movies are best at generating profit. The measure they use for this is the profitability ratio, which is defined as $$PR=\frac{Revenue}{Budget}.$$ Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -138,11 +136,10 @@ new_min <- min(movies$PR, na.rm = TRUE)
 *Step e*
 
 ```{r}
-mean(movies$PR>=1 & !is.na(movies$PR))
 mean(movies$PR>=1, na.rm = TRUE)
 ```
 
-**Your Answer:** A movie with a PR of at least one means that the movie is at least break even or has made a profit. A PR of one is the border between a movie that made a loss and a movie that made a profit. The fraction of movies with a PR of at least one is approximately 0.4567 when including the NAs as observations that do not fulfill the condition. When completely excluding the NAs in computing the fraction, the fraction becomes approximately 0.6059
+**Your Answer:** A movie with a PR of at least one means that the movie is at least break even or has made a profit. A PR of one is the border between a movie that made a loss and a movie that made a profit. The fraction of movies with a PR of at least one is approximately 0.6059 excluding the NAs from the calculation.
 
 *Step f*
 
@@ -159,7 +156,7 @@ quantile(movies$PR, na.rm = TRUE)
 
 1 Is your dataset movies4.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
 
-**Your Answer** The dataset is a sample of the population. The dataset includes a limited amount of movies from 1990 until 2016. As it only includes 808 movies, which is a limited amount, as there were a lot more movies that were published in this timespan. The full dataset could be all the movies that have information on the variables included in the dataset (such as, runtime, director, etc.) published from 1990 until 2016.
+**Your Answer:** The dataset is a sample of the population. The dataset includes a limited amount of movies from 1990 until 2016. As it only includes 808 movies, which is a limited amount, as there were a lot more movies that were published in this timespan. The full dataset could be all the movies that have information on the variables included in the dataset (such as, runtime, director, etc.) published from 1990 until 2016.
 
 2 Let M be the event that a movie director is male. Let R be the runtime of the movie.
 
@@ -218,9 +215,7 @@ prob_union <- prob_120_min + probability_female - prob_intersect
 prob_union
 ```
 
-**Your Answer:**
-
-The probability of the union between a runtime of 120 minutes or more and a female director is 0.2970.
+**Your Answer:** The probability of the union between a runtime of 120 minutes or more and a female director is 0.2970.
 
 3 For this question, you will again use the profitability ratio PR. Make sure that PR is defined the same way as in question 3d of week 1. For this question, you will assume that your data set is the full population.
 
@@ -258,7 +253,7 @@ for (i in 1:100) {
 print(sample_means)
 ```
 
-**Your Answer:**
+**Your Answer:** Vector with 100 sample means of the PR.
 
 *step d*
 
@@ -310,7 +305,7 @@ t.test(thriller_movies$vote_average, conf.level = 0.99)$conf.int
 t.test(thriller_movies$vote_average, mu = 6.5, alternative = "less")
 ```
 
-**Your Answer:** Step 1: State the hypotheses: $H_0: \mu\geq6.5$ and $H_0:\mu<6.5$. Mu here is the population mean of the vote average of thriller movies. Step 2: Specify the decision rule: this is a one-sided (left-tailed) test and since no significance level has been given, the default of $\alpha=0.05$ will be used. So, the decision rule is that if $p-value<0.05$ the null hypothesis will be rejected. Step 3: Collect data and calculate: this can easily be done with the t.test() function and the specification alternative = "less" to make this a left-tailed test. Step 4: the t-test gives a p-value of 3.739e-14, which is a number extremely close to zero, this means that even with 99% certainty ($\alpha=0.01$) the null hypothesis should be rejected, as the probability of observing the sample mean given that the null hypothesis is true is so small, that it is nearly impossible that this is accidental. Therefore, the null hypothesis should be rejected. Step 5: Take action: reject the null hypothesis. From the extremely low p-value we can conclude with almost full certainty that the average rating of a thriller movie is not equal or higher than that of the average movie, which is 6.5.
+**Your Answer:** Step 1: State the hypotheses: $H_0: \mu\geq6.5$ and $H_0:\mu<6.5$. Mu here is the population mean of the vote average of thriller movies. Step 2: Specify the decision rule: this is a one-sided (left-tailed) test and since no significance level has been given, $\alpha=0.05$ is deemed appropriate. So, the decision rule is that if $p-value<0.05$ the null hypothesis will be rejected. Step 3: Collect data and calculate: this can easily be done with the t.test() function and the specification alternative = "less" to make this a left-tailed test. Step 4: the t-test gives a p-value of 3.739e-14, which is a number extremely close to zero, this means that even with 99% certainty ($\alpha=0.01$) the null hypothesis should be rejected. Step 5: Take action: reject the null hypothesis. From the extremely low p-value we can conclude with almost full certainty that the average rating of a thriller movie is not equal or higher than that of the average movie, which is 6.5.
 
 2
 
@@ -352,7 +347,7 @@ male_var <- var(male_PR$PR, na.rm= TRUE)
 male_var
 ```
 
-**Your Answer:** The sample variance of the profitability ratio of a movie with a female lead is 27.12278 and the sample variance of the profitability ratio of a movie with a male lead is 31.33558.
+**Your Answer:** The sample variance of the profitability ratio of a movie with a female lead is 27.1228 and the sample variance of the profitability ratio of a movie with a male lead is 31.3356.
 
 *step d*
 
@@ -430,7 +425,7 @@ ggplot(mean_genre_ci, aes(x = genre2, y = mean_PR2))+
   labs(title = "Mean of PR for each genre with 95% confidence interval", x = "Movie genres", y = "PR mean") + theme_minimal()
 ```
 
-**Your Answer:**
+**Your Answer:** A scatter plot for the PR mean of each movie genre from genre2, with a 95% confidence interval.
 
 *step d*
 
