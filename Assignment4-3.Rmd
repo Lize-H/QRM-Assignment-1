@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete. is it going to work now??
+This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete. 
 
 The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material). 
 
@@ -79,13 +79,13 @@ g. Based on your analysis in f.), estimate your model again, but remove any outl
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+model <- lm(formula = movies$PR ~ movies$budget)
+summary(model)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+A summary of a linear regression model with budget as the predictor/independent variable and PR as the response variable/dependent variable. 
 
 *step b*
 
@@ -96,7 +96,7 @@ Write your formulated response here.
 
 **Your Answer:**
 
-Write your formulated response here.
+The estimated value of $\beta_1$ retrieved from the summary, and it is -2.235e-09 or -0.000000002235. This means that a one unit increase of the budget is associated with a -2.235e-09 increase (so a 2.235e-09 decrease) of PR. It means that the budget and the PR have a negative relation. The reason why $\beta_1$ is so small is because budget is a way larger variable than PR.
 
 *step c*
 
