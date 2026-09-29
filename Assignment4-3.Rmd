@@ -1,0 +1,246 @@
+---
+title: "QRM II Graded Assignment (4)"
+subtitle: "Period 1, 2026"
+author: "Group 4: Lize den Hertog, Tamara Bakker, Nienke Wielstra"
+date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
+output:
+  pdf_document:
+    number_sections: true
+  html_document:
+    df_print: paged
+
+header-includes:
+- "\\setcounter{section}{-1}"
+- |
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+    showspaces = false,
+    showtabs = false,
+    breaklines,
+    commandchars=\\\{\}
+  }
+format:
+  html:
+    code-overflow: wrap
+---
+
+```{r setup packages}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This assignment is to be completed in groups of 4-5. Further, all students in your group need to be assigned to the same R tutorial group (Friday's tutorial). You can sign yourself up for a group on Canvas. Please do so \textbf{before the start of your first R tutorial on Friday September 4th.} You can use the Discussion Board in Canvas if you do not have a group yet or if your group is incomplete.
+
+The assignment has 5 parts, and each part corresponds to the course material of that week (with the exclusion of week 6, for which there is no R programming material). 
+
+You are supposed to hand in these assignments on Canvas at the following dates:
+
+  - **Deadline 1** *Sunday September 27th, at 23:59pm*: you are supposed to hand in weeks 1, 2, and 3 of this assignment.   This will determine 18\% of your overall course grade
+  - **Deadline 2** *Sunday October 11th, at 23:59pm*: you are supposed to hand in weeks 4, and 5 of this assignment. This will determine 12\% of your overall course grade 
+
+The R tutorials (each Friday) will consist of two halves. During the first half, you will discuss the tutorial exercises. These can be downloaded separately from Canvas. During the second half, you can work on this graded assignment within your own group. The purpose is that you find out how to work with R for doing statistical analyses by yourself. The tutorial exercises are meant to teach you basic commands to get you started, but to answer the problem sets in this assignment, you might need to research your own solutions, and use functions and commands not described in the tutorial exercises. Learning how to solve your own research problems is integral part of learning R. When you and your group get stuck on how to approach an exercise, the hierarchy in finding your way is as follows:
+
+-	use the concepts from the tutorial exercises;
+- use the cheat sheets available on Canvas;
+-	use Google, YouTube, StackOverflow, or another website;
+- ask the teacher.
+
+The use of generative AI is \textbf{not} permitted and may result in a grade of 0. See the AI protocol in the course manual for details.
+
+To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis? 
+
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. 
+
+The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
+
+We encourage you to keep your code blocks, printing statements, and final answers, as short as possible. In any case, there is a page limit of 6 pages per week, which encompasses the total length of this document which consists of the questions, your coding lines, and your answers. When your answers to questions of the respective week exceed this page limit, they will not be graded, resulting in zero points.
+
+Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points. 
+
+
+# Week 4 
+
+1. There is an argument going on in the movie studio. *Bob* claims that production budgets are getting out of hand, and that the studio should focus on making cheaper movies. *Chantal* disagrees. She tells Bob that ``The profitability ratio of the movie will remain similar, no matter how much the budget is''. 
+
+a. Set up a regression model to test Chantal's claim, and estimate it. That is, estimate: $$\text{PR}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.$$ Print a summary of your estimated model. \textbf{[2 points]}
+b. What is the estimated value of $\beta_1$ how do you interpet it? \textbf{[2 points]}
+c. Test for the null hypothesis that $\beta_1 = 0$. Report the p-value and state your conclusion. \textbf{[2 points]}
+d. Who do you think is correct? Bob or Chantal? What would you advise the movie studio to do? \textbf{[2 points]}
+e. Make a histogram of the residuals of your model. Based on the histogram, do you have any reason to doubt the validity of your model? Explain. \textbf{[2 points]}
+f. Estimate hatvalues for each observation that you used to estimate your model. Do any hatvalues exceed the critical value? Based on this analysis, do you hvae any reason to doubt the validity of your model? \textbf{[2 points]}
+g. Based on your analysis in f.), estimate your model again, but remove any outliers. Print a summary of your model and again test for the null hypothesis that $\beta_1 = 0$. What do you conclude? Based on this new model, would your advice to the movie studio in question d. change? \textbf{[2 points]}
+
+*step a*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step b*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step c*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step d*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step e*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step f*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step g*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+2.
+
+a. Make a scatterplot with vote_average on the y-axis, and runtime on the x-axis. Within the same scatterplot, draw a straight line which summarizes the association between the average vote and the runtime. \textbf{[3 points]}
+b. Using the insights from the scatterplot, your linear model, and your data, find an example of a movie that vastly overperformed. That means, find a movie that had much higher average vote than expected, given its runtime. For this movie, report its vote_average, its predicted vote_average, and its residual. \textbf{[3 points]}
+
+*step a*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step b*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+# Week 5
+  
+a. Create a plot of the mean PR by year of release. Include 95\% confidence intervals around each mean Do you see any indication of a time trend in the PR? \textbf{[4 points]}
+b. Estimate an OLS model which has as dependent variable the PR of a movie, and as independent variable the log of budget, a dummy for each level that genre2 can take, and the year of release. Show a summary of the resulting model and interpret each coefficient. \textbf{[4 points]}
+
+The movie studio that you work is releasing a new movie in May of 2026. It will be a Comedy movie with a budget of 40,000,0000. It will have a runtime of 160 minutes. 
+
+c. Estimate a model that is able to predict the revenue of this movie. Give its predicted revenue and include a 95% prediction interval. \textbf{[6 points]}
+d. Plot the residuals against various independent variables in the model. Do you find any evidence of heteroskedasticity? \textbf{[2 points]}
+e. The movie is set in Germany. The director wants to make the movie with only german-speaking actors. The executive producer is strongly against this, as she is afraid that movies that are not english spoken will have a low profit ratio. Estimate a model that can test whether the language spoken impacts the PR of this specific movie. Use an appropriate hypothesis test to test whether the language. What would you advise the movie studio regarding the language to be spoken? \textbf{[6 points]}
+
+
+*step a*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step b*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step c*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step d*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
+Write your formulated response here.
+
+*step e*
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+
