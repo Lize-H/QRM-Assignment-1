@@ -1,7 +1,7 @@
 ---
 title: "QRM II Graded Assignment (4)"
 subtitle: "Period 1, 2026"
-author: "Group 4: Lize den Hertog, Tamara Bakker, Nienke Wielstra"
+author: "Group 4: Lize den Hertog, Tamara Bakker, Nienke Wielstra, Saliou Diallo, and Zakaria Azarioh"
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document:
