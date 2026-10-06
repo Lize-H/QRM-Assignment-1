@@ -25,7 +25,7 @@ format:
 ---
 
 ```{r setup packages}
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
 ```
 
@@ -79,6 +79,7 @@ g. Based on your analysis in f.), estimate your model again, but remove any outl
 *step a*
 
 ```{r}
+movies <- readRDS("cleaned_movies.rds")
 model <- lm(formula = movies$PR ~ movies$budget)
 summary(model)
 ```
@@ -90,7 +91,6 @@ A summary of a linear regression model with budget as the predictor/independent 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
 
 ```
 
@@ -101,13 +101,12 @@ The estimated value of $\beta_1$ retrieved from the summary, and it is -2.235e-0
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The hypotheses are $H_0:\beta_1=0$ and $H_1:\beta_1\ne0$, with significance level $\alpha=0.05$. The test statistic is the p-value, if the p-value is smaller than the significance level, we reject the null hypothesis. From the summary of the linear regression model, a p-value of 0.6515 can be retrieved. A high p-value mean that the chance that the null hypothesis is true is large, so, since $0.6515>0.05$, we fail to reject the null hypothesis that the linear model is statistically significant, because at a 95% confidence level, there is not enough prove to state that the model is statistically significant. 
 
 *step d*
 
@@ -161,8 +160,11 @@ b. Using the insights from the scatterplot, your linear model, and your data, fi
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+ggplot(movies, aes(x=runtime, y=vote_average))+
+  geom_point(size=2)+
+  labs(title="Association between vote average and runtime", x="Runtime", y="Vote average")+
+  geom_smooth(method="lm")+
+  theme_minimal()
 ```
 
 **Your Answer:**
@@ -172,13 +174,17 @@ Write your formulated response here.
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+new_model <- lm(formula = movies$vote_average ~ movies$runtime)
+movies$residual <- movies$vote_average - predict(new_model)
+movies$model_vote <- predict(new_model)
+max(residual)
+subset(movies, residual == max(residual))$vote_average
+subset(movies, vote_average == 10)$model_vote
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+In the scatterplot, it is already visible that one observation, in which the vote average was 10, lies further away from the model than all other values, but to ensure that this is correct, it was calculated mathematically as well. One movie that overperformed compared to its runtime, is a movie "Me, You, and Five Bucks". This movie has a vote average of 10, while its estimated vote average is 5.7254. This gives the vote average estimate a residual of 4.2746.
 
 # Week 5
   
