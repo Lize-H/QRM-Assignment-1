@@ -122,13 +122,13 @@ Write your formulated response here.
 *step e*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+residual_PR <- na.omit(movies$PR - predict(model))
+hist(residual_PR, main="Histogram residuals estimated PR", xlab="Residuals estimated PR", breaks =200)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Yes, there is reason to doubt the validity of the model. One of the rules of regression is that the residuals should be distributed normally, else there is something wrong/missing in the model. In the histogram, it is clearly visible that the residuals peak on the left side and slope downwards to the right side, which is nothing like the bell-shaped distribution of the normal distribution. This makes the validity of the model questionable. 
 
 *step f*
 
