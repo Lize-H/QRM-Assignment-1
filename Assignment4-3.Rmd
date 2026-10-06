@@ -133,14 +133,14 @@ Yes, there is reason to doubt the validity of the model. One of the rules of reg
 *step f*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+hatvalues(model)
+sum(hatvalues(model)>2/609)
+sum(hatvalues(model)<=2/609)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
-
+Of the 609 observations of the budget that are considered in the model, not 808 because PR contains a lot of NAs, 75 are considered "suspect" according to the general rule of the hat values. This is approximately 12% of all the observations, which is a significant number. In itself, this observation definitely requires further investigation as to why there are so many outliers and what the influence of these outliers is, but it does not necessarily have to affect the validity of the model. However, considering the outcomes of the other assignments, this result can be associated with further proof that the validity of this model is very questionable. 
 *step g*
 
 ```{r}
