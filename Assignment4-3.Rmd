@@ -201,18 +201,23 @@ e. The movie is set in Germany. The director wants to make the movie with only g
 *step a*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+pr_year <- movies %>% group_by(release_year) %>%
+  summarise(mean_pr = mean(PR, na.rm=TRUE), s=sd(PR, na.rm=TRUE), n = sum(!is.na(PR))) %>%
+  mutate(lower= mean_pr - qt(0.975, df = n-1)*s/sqrt(n),
+         upper= mean_pr + qt(0.975, df = n-1)*s/sqrt(n))
+ggplot(pr_year, aes(release_year, mean_pr)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.3) +
+  labs(title = "Average PR per year, with 95% confidence interval", x = "Release year", y = "PR mean") 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+In this graph, all NAs are removed from the computation, There does not seem to be a time trend concerning the average profitability ratio over the years, meaning that it does not seem to increase or decrease over the years. There seems to be a slight wavy pattern, but this pattern does not seem very significant, as the differences are small. Some years have big confidence intervals, while others have small ones, and these are often grouped, but overall there does not seem to be a general trend in the PR.
 
 *step b*
 
 ```{r}
-#WRITE YOUR CODE HERE
 
 ```
 
