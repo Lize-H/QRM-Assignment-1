@@ -144,8 +144,7 @@ Of the 609 observations of the budget that are considered in the model, not 808 
 *step g*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+used <- as.numeric(rownames(model.frame(model)))
 ```
 
 **Your Answer:**
