@@ -161,7 +161,7 @@ b. Using the insights from the scatterplot, your linear model, and your data, fi
 
 ```{r}
 ggplot(movies, aes(x=runtime, y=vote_average))+
-  geom_point(size=2)+
+  geom_point()+
   labs(title="Association between vote average and runtime", x="Runtime", y="Vote average")+
   geom_smooth(method="lm")+
   theme_minimal()
@@ -177,7 +177,7 @@ Write your formulated response here.
 new_model <- lm(formula = movies$vote_average ~ movies$runtime)
 movies$residual <- movies$vote_average - predict(new_model)
 movies$model_vote <- predict(new_model)
-max(residual)
+max(movies$residual)
 subset(movies, residual == max(residual))$vote_average
 subset(movies, vote_average == 10)$model_vote
 ```
@@ -218,12 +218,16 @@ In this graph, all NAs are removed from the computation, There does not seem to 
 *step b*
 
 ```{r}
-
+model_2 <- lm(formula = PR ~ log(budget) + genre2 + release_year, data = movies)
+summary(model_2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The intercept of 135.75895 can be interpreted as the estimated value of PR if all the independent variables were zero. The intercept does not necessarily need to be logically true, it is mathematical.
+The coefficient of the logarithm of the budget can be interpreted as the fact that a 1% increase of the budget is associated with a 0.0026435 decrease in PR, holding all other variables constant.
+The coefficients of the dummy variables representing the different genre categories are the associated change in the PR if the movie belongs to a certain genre compared to the PR associated with the genre Comedy. So, if the movie belongs to the genre drama, the change in PR associated with this genre compared to the genre comedy is a decrease of 1.30554, holding all other variables constant. Likewise, if a movies belongs to the other genres, the change in PR associated with this genre compared to the genre comedy is a decrease of 0.24957, holding all other variables constant. If a movie has the genre Thriller, the change in PR associated with this genre compared to the genre comedy is a decrease of 0.06367, holding all other variables constant.
+Finally, release year has a coefficient of -0.06367, meaning that if the movie is released one year later, this is associated with a 0.06367 decrease in PR holding all other variables constant.
 
 *step c*
 
