@@ -247,12 +247,24 @@ The revenue of this movie is predicted to be 165,322,676 dollars, with a predict
 *step d*
 
 ```{r}
-
+movies$resd <- residuals(model_3)
+ggplot(movies, aes(budget, resd)) +
+  geom_point() +
+  labs(title = "Budget against Residuals", x = "Budget", y = "Residuals") +
+  geom_hline(yintercept = 0) 
+ggplot(movies, aes(runtime, resd))+
+  geom_point()+
+  labs(title = "Runtime against Residuals", x = "Runtime", y = "Residuals") +
+  geom_hline(yintercept = 0) 
+ggplot(movies, aes(release_year, resd))+
+  geom_point()+
+  labs(title = "Release Year against Residuals", x = "Release Year", y = "Residuals") +
+  geom_hline(yintercept = 0) 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+
 
 *step e*
 
