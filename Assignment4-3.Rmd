@@ -117,7 +117,7 @@ The hypotheses are $H_0:\beta_1=0$ and $H_1:\beta_1\ne0$, with significance leve
 
 **Your Answer:**
 
-Write your formulated response here.
+Assuming that the model is somewhat accurate, despite there not being enough prove to state that the model is statically significant, Chantal would be correct. The coefficient of the budget might be negative, but is so small that a one million dollar increase of the budget still would only be associated with a 0.002235 decrease of the profitability ratio. This backs Chantal's statement that "no matter what the budget is, the profitability ratio will remain similar". The extremely small coefficient of the budget also shows that Bob's idea of making cheaper movies does not have a lot of effect, since the effect of the decrease would be minimal. But overall, this model clearly lacks multiple predictors in order to make a decent assumption, considering the fact that the R-squared is less than 1%. This makes it clear that the budget alone is not that relevant to the profitability ratio and that other factors make a movie profitable. The movie studio should not focus on the budgets, but instead focus on what actually makes a movie profitable. 
 
 *step e*
 
