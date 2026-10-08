@@ -195,7 +195,7 @@ The movie studio that you work is releasing a new movie in May of 2026. It will 
 
 c. Estimate a model that is able to predict the revenue of this movie. Give its predicted revenue and include a 95% prediction interval. \textbf{[6 points]}
 d. Plot the residuals against various independent variables in the model. Do you find any evidence of heteroskedasticity? \textbf{[2 points]}
-e. The movie is set in Germany. The director wants to make the movie with only german-speaking actors. The executive producer is strongly against this, as she is afraid that movies that are not english spoken will have a low profit ratio. Estimate a model that can test whether the language spoken impacts the PR of this specific movie. Use an appropriate hypothesis test to test whether the language. What would you advise the movie studio regarding the language to be spoken? \textbf{[6 points]}
+e. The movie is set in Germany. The director wants to make the movie with only german-speaking actors. The executive producer is strongly against this, as she is afraid that movies that are not english spoken will have a low profit ratio. Estimate a model that can test whether the language spoken impacts the PR of this specific movie. Use an appropriate hypothesis test to test whether the language affects the PR ratio. What would you advise the movie studio regarding the language to be spoken? \textbf{[6 points]}
 
 
 *step a*
@@ -264,13 +264,27 @@ ggplot(movies, aes(release_year, resd))+
 
 **Your Answer:**
 
-
+Considering these three numerical variables, plotting runtime and release year against the residuals do not give any results back that indicate heteroskedasticity. However, plotting the budgets against the residuals gives a scatterplot in which the dots fan out, indicating heteroskedasticity. The fan pattern indicates that the variance of the residuals changes for different values of the budget, which violates homoskedasticity and the assumption of the OLS model.
 
 *step e*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+movies$english <- as.numeric(movies$original_language == "en")
+model_4 <- lm(formula = PR ~ log(budget) + genre2 + release_year + english, data = movies)
+summary(model_4)
+df.residual(model_4)
+qt(0.975, df= 602)
 ```
+**Your answer:**
+
+In this answer the model of 1b is used, and a dummy variable named english that denotes whether or not the movie's original language is English (yes=1, no=0). The coefficient of this variable will be denoted as $\beta_6$
+Hypothesis: null hypothesis: $H_0:\beta_6=0$, alternative hypothesis: $H_1:\beta_6\ne0$, with significance level $\alpha=0.05$. 
+The test statistic is the t-test, since we are testing the statistical significance of 1 coefficient: $t=(\beta_j-\beta_0)/se(\beta_j)$ and reject for big values of t, so reject null hypothesis if $tcalc>tcrit$
+The calculated t value is given by the summary of the model and is 0.850. The critical t-value is with significance level 0.025 (two-tailed test) and n-k-1 degrees of freedom, which is 602 degrees of freedom (also given by the summary). This gives a t-value of 1.9639, and since 0.850<1.9639, we fail to reject the null hypothesis. Alternatively, looking at the p-value 0.3956>0.05, also gives the conclusion that we cannot reject the null hypothesis. This means that we cannot prove that whether or not the movie is English has an associated effect on the PR. 
+Given this information, we would advise the studio to choose the language they prefer, so German, since there is no proof that making the movie English will be associated with a higher profitability ratio.
+
+
+
+
 
 
