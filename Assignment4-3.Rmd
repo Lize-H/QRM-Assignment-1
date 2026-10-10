@@ -111,13 +111,13 @@ The hypotheses are $H_0:\beta_1=0$ and $H_1:\beta_1\ne0$, with significance leve
 *step d*
 
 ```{r}
-#WRITE YOUR CODE HERE
+
 
 ```
 
 **Your Answer:**
 
-We agree with Chantal, although her statement cannot be 100% proven correct. The null hypothesis that the linear regression model with budget as the predictor and the profitability ratio as the dependent variable is statistically insignificant ($\beta_1=0$) cannot be rejected as the p-value of the coefficient of the budget is way too high (0.651). This means that there is not enough prove to state that there is a linear relationship between the profitability ratio and the budget. This agrees with Chantals statement, that the profitability ratio will stay similar, no matter the budget. However, this does not prove Chantal's statement, it simply fails to reject her statement. Bob's statement can be interpreted as the statement that there is a negative relationship between the budget and the profitability ratio. Since we fail to reject the null hypothesis of statistical insignificance, this statement is not backed by statistical evidence.
+We agree with Chantal, although her statement cannot be 100% proven correct. The null hypothesis that the linear regression model with budget as the predictor and the profitability ratio as the dependent variable is statistically insignificant ($\beta_1=0$) cannot be rejected as the p-value of the coefficient of the budget is way too high (0.651). This means that there is not enough prove to state that there is a linear relationship between the profitability ratio and the budget. This agrees with Chantal's statement, that the profitability ratio will stay similar, no matter the budget. However, this does not prove Chantal's statement, it simply fails to reject her statement. Bob's statement can be interpreted as the statement that there is a negative relationship between the budget and the profitability ratio. Since we fail to reject the null hypothesis of statistical insignificance, this statement is not backed by statistical evidence.
 
 *step e*
 
