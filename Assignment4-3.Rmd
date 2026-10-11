@@ -91,7 +91,7 @@ A summary of a linear regression model with budget as the predictor/independent 
 *step b*
 
 ```{r}
-
+coef(model)["movies$budget"]
 ```
 
 **Your Answer:**
@@ -101,7 +101,7 @@ The estimated value of $\beta_1$ retrieved from the summary, and it is -2.235e-0
 *step c*
 
 ```{r}
-
+summary(model)$coefficients["movies$budget", "Pr(>|t|)"]
 ```
 
 **Your Answer:**
@@ -110,11 +110,6 @@ The hypotheses are $H_0:\beta_1=0$ and $H_1:\beta_1\ne0$, with significance leve
 
 *step d*
 
-```{r}
-
-
-```
-
 **Your Answer:**
 
 We agree with Chantal, although her statement cannot be 100% proven correct. The null hypothesis that the linear regression model with budget as the predictor and the profitability ratio as the dependent variable is statistically insignificant ($\beta_1=0$) cannot be rejected as the p-value of the coefficient of the budget is way too high (0.651). This means that there is not enough prove to state that there is a linear relationship between the profitability ratio and the budget. This agrees with Chantal's statement, that the profitability ratio will stay similar, no matter the budget. However, this does not prove Chantal's statement, it simply fails to reject her statement. Bob's statement can be interpreted as the statement that there is a negative relationship between the budget and the profitability ratio. Since we fail to reject the null hypothesis of statistical insignificance, this statement is not backed by statistical evidence.
@@ -122,9 +117,10 @@ We agree with Chantal, although her statement cannot be 100% proven correct. The
 *step e*
 
 ```{r}
-residual_PR <- na.omit(movies$PR - predict(model))
-hist(residual_PR, main="Histogram residuals estimated PR", xlab="Residuals estimated PR", breaks =200)
+residuals_PR <- residuals(model)
+hist(residuals_PR, main="Histogram residuals estimated PR", xlab="Residuals estimated PR", breaks =200)
 ```
+
 
 **Your Answer:**
 
@@ -133,14 +129,17 @@ Yes, there is reason to doubt the validity of the model. One of the rules of reg
 *step f*
 
 ```{r}
+nobs(model)
 hatvalues(model)
 sum(hatvalues(model)>2/609)
 sum(hatvalues(model)<=2/609)
+75/609*100
 ```
 
 **Your Answer:**
 
-Of the 609 observations of the budget that are considered in the model, not 808 because PR contains a lot of NAs, 75 are considered "suspect" according to the general rule of the hat values. This is approximately 12% of all the observations, which is a significant number. In itself, this observation definitely requires further investigation as to why there are so many outliers and what the influence of these outliers is, but it does not necessarily have to affect the validity of the model. However, considering the outcomes of the other assignments, this result can be associated with further proof that the validity of this model is very questionable. 
+Of the 609 observations of the budget that are considered in the model, not 808 because PR contains a lot of NAs, 75 are considered "suspect" according to the general rule of the hat values, which is $h_j>2/n$. This is approximately 12.3% of all the observations, which is a significant number. In itself, this observation definitely requires further investigation as to why there are so many outliers and what the influence of these outliers is, but it does not necessarily have to affect the validity of the model. However, considering the outcomes of the other assignments, this result can be associated with further proof that the validity of this model is very questionable. 
+
 *step g*
 
 ```{r}
@@ -155,7 +154,7 @@ summary(clean_model)
 
 **Your Answer:**
 
-Hypotheses: $H_0:\beta_1=0$, $H_1:\beta_1\ne0$, with significance level $\alpha=0.05$. The test statistic and the rules about rejection are the same: the p-value and if the p-value is smaller than the significance level, we reject the null hypothesis. the p-value is 0.0589, which is larger than 0.05, so we fail to reject the null hypothesis, however, this time the p-value is way smaller than when the outliers were still included, which was 0.651. So, the model did improve because of the outlier removal.
+Hypotheses: $H_0:\beta_1=0$, $H_1:\beta_1\ne0$, with significance level $\alpha=0.05$. The test statistic and the rules about rejection are the same as 1c: the p-value and if the p-value is smaller than the significance level, we reject the null hypothesis. the p-value is 0.0589, which is larger than 0.05, so we fail to reject the null hypothesis, however, this time the p-value is way smaller than when the outliers were still included, which was 0.651. So, the model did improve because of the outlier removal.
 This means that we do not change our answer in d, since the test still shows insufficient statistical evidence of a linear (negative) relationship between the profitability ratio and the budget, even though this model comes way closer than the previous one (on a 90% confidence interval, the null hypothesis could be rejected). This is also because we do not know whether these outliers are truely outliers, in the sense of distorting the actual situation or being wrong, or just outliers as in observations that lie further from the other observations. 
 
 2.
@@ -175,22 +174,23 @@ ggplot(movies, aes(x=runtime, y=vote_average))+
 
 **Your Answer:**
 
-Scatterplot of vote average and runtime with a linear line of "best fit".
+Scatterplot of vote average and runtime with a linear line of "best fit" with a confidence interval.
 
 *step b*
 
 ```{r}
 new_model <- lm(formula = movies$vote_average ~ movies$runtime)
-movies$residual <- movies$vote_average - predict(new_model)
+movies$residual <- residuals(new_model)
 movies$model_vote <- predict(new_model)
 max(movies$residual)
 subset(movies, residual == max(residual))$vote_average
 subset(movies, vote_average == 10)$model_vote
+subset(movies, residual == max(residual))$title
 ```
 
 **Your Answer:**
 
-In the scatterplot, it is already visible that one observation, in which the vote average was 10, lies further away from the model than all other values, but to ensure that this is correct, it was calculated mathematically as well. One movie that overperformed compared to its runtime, is a movie "Me, You, and Five Bucks". This movie has a vote average of 10, while its estimated vote average is 5.7254. This gives the vote average estimate a residual of 4.2746.
+In the scatterplot, it is already visible that one observation, in which the vote average was 10, lies further away from the model than all other values, but to ensure that this is correct, it was calculated mathematically as well. One movie that overperformed compared to its runtime, is the movie "Me, You, and Five Bucks". This movie has a vote average of 10, while its estimated vote average is 5.7254. This gives the vote average estimate a residual of 4.2746.
 
 # Week 5
   
@@ -275,19 +275,18 @@ Considering these three numerical variables, plotting runtime and release year a
 *step e*
 
 ```{r}
-movies$english <- as.numeric(movies$original_language == "en")
-model_4 <- lm(formula = PR ~ log(budget) + genre2 + release_year + english, data = movies)
-summary(model_4)
-df.residual(model_4)
-qt(0.975, df= 602)
+full_model <- lm(formula = PR ~ log(budget) + genre2 + release_year + original_language, data = movies)
+reduced_model <- lm(formula = PR ~ log(budget) + genre2 + release_year, data = movies)
+anova_result <- anova(reduced_model, full_model)
+print(anova_result)
 ```
 **Your answer:**
 
-In this answer the model of 1b is used, and a dummy variable named english that denotes whether or not the movie's original language is English (yes=1, no=0). The coefficient of this variable will be denoted as $\beta_6$
-Hypothesis: null hypothesis: $H_0:\beta_6=0$, alternative hypothesis: $H_1:\beta_6\ne0$, with significance level $\alpha=0.05$. 
-The test statistic is the t-test, since we are testing the statistical significance of 1 coefficient: $t=(\beta_j-\beta_0)/se(\beta_j)$ and reject for big values of t, so reject null hypothesis if $tcalc>tcrit$
-The calculated t value is given by the summary of the model and is 0.850. The critical t-value is with significance level 0.025 (two-tailed test) and n-k-1 degrees of freedom, which is 602 degrees of freedom (also given by the summary). This gives a t-value of 1.9639, and since 0.850<1.9639, we fail to reject the null hypothesis. Alternatively, looking at the p-value 0.3956>0.05, also gives the conclusion that we cannot reject the null hypothesis. This means that we cannot prove that whether or not the movie is English has an associated effect on the PR. 
-Given this information, we would advise the studio to choose the language they prefer, so German, since there is no proof that making the movie English will be associated with a higher profitability ratio.
+
+Hypothesis: null hypothesis: $H_0:\beta_6=...\beta_23=0$, alternative hypothesis: $H_1:$at least one of the coefficients is not zero, with significance level $\alpha=0.05$. 
+The test statistic is the p-value of the ANOVA, analysis of variance, since we want to know whether adding the original language to the model will improve it. We reject the null hypothesis if the p-value is smaller than the significance level.
+The p-value of the analysis of variance is 0.9993, which is greater than 0.05, so we fail to reject the null hypothesis, as there is insufficient statistical evidence to state that the language in which the movie is spoken is associated with a chance in the profitability ratio. 
+Given this information, we would advise the studio to choose the language they prefer, so German, since there is no statistical evidence that making the movie English will be associated with a higher profitability ratio or that the language in which the movie is spoken is relevant to the profitability ratio.
 
 
 
