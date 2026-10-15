@@ -1,14 +1,15 @@
 ---
 title: "QRM II Graded Assignment (4)"
-subtitle: "Period 1, 2026"
-author: "Group 4: Lize den Hertog, Tamara Bakker, Nienke Wielstra, Saliou Diallo, and Zakaria Azarioh"
-date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
+author: 'Group 4: Lize den Hertog, Tamara Bakker, Nienke Wielstra, Saliou Diallo,
+  and Zakaria Azarioh'
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
-  pdf_document:
-    number_sections: true
+  word_document: default
   html_document:
     df_print: paged
-
+  pdf_document:
+    number_sections: true
+subtitle: Period 1, 2026
 header-includes:
 - "\\setcounter{section}{-1}"
 - |
@@ -18,7 +19,6 @@ header-includes:
     showtabs = false,
     breaklines,
     commandchars=\\\{\}
-  }
 format:
   html:
     code-overflow: wrap
@@ -130,9 +130,9 @@ Yes, there is reason to doubt the validity of the model. One of the rules of reg
 
 ```{r}
 nobs(model)
-hatvalues(model)
-sum(hatvalues(model)>2/609)
-sum(hatvalues(model)<=2/609)
+hat_values_yea <- hatvalues(model)
+sum(hat_values_yea>2/609)
+sum(hat_values_yea<=2/609)
 75/609*100
 ```
 
@@ -248,7 +248,7 @@ predict(model_3, newdata = new_movie, interval = "prediction", level = 0.95)
 
 **Your Answer:**
 
-The revenue of this movie is predicted to be 165,322,676 dollars, with a prediction interval between -54,395,901 and 385,041,253 dollar. However, since revenue cannot be negative, we should consider placing the lower bound of the confidence interval at zero dollars.
+The revenue of this movie is predicted to be 165,322,676 dollars, with a prediction interval between -54,395,901 and 385,041,253 dollars. However, since revenue cannot be negative, we should consider placing the lower bound of the confidence interval at zero dollars.
 
 *step d*
 
